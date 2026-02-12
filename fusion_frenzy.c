@@ -5,7 +5,6 @@
 #include <ctype.h>
 #include "cJSON.h"
 
-
 #define DEBUG
 
 #ifdef DEBUG
@@ -18,6 +17,9 @@
 #ifndef _WIN32_WINNT
 #define _WIN32_WINNT 0x0600  // Windows Vista
 #endif
+#ifndef WINVER
+#define WINVER 0x0600
+#endif
 
 #include <windows.h>
 #include <process.h>
@@ -27,88 +29,83 @@
 #define THREAD_JOIN(thread) WaitForSingleObject(thread, INFINITE)
 #define THREAD_EXIT(value) ExitThread((DWORD)value)
 #define MUTEX CRITICAL_SECTION
-#define MUTEX_INIT(mutex) InitializeCriticalSection(&mutex)
-#define MUTEX_LOCK(mutex) EnterCriticalSection(&mutex)
-#define MUTEX_UNLOCK(mutex) LeaveCriticalSection(&mutex)
-#define MUTEX_DESTROY(mutex) DeleteCriticalSection(&mutex)
+#define MUTEX_INIT(mutex) InitializeCriticalSection(mutex)
+#define MUTEX_LOCK(mutex) EnterCriticalSection(mutex)
+#define MUTEX_TRYLOCK(mutex) TryEnterCriticalSection(mutex)
+#define MUTEX_UNLOCK(mutex) LeaveCriticalSection(mutex)
+#define MUTEX_DESTROY(mutex) DeleteCriticalSection(mutex)
 
-// For older Windows versions without condition variables
-#if (_WIN32_WINNT >= 0x0600)
+#ifndef CONDITION_VARIABLE // Fallback for older Windows versions without condition variable support
+typedef HANDLE CONDITION_VARIABLE; // treat as a HANDLE for the fallback
+#define CONDITION_VAR HANDLE
+#define COND_INIT(cond) do { *(cond) = CreateEvent(NULL, FALSE, FALSE, NULL); } while(0)
+#define COND_WAIT(cond, mutex) do { LeaveCriticalSection(mutex); WaitForSingleObject(*(cond), INFINITE); EnterCriticalSection(mutex); } while(0)
+#define COND_SIGNAL(cond) SetEvent(*(cond))
+#define COND_BROADCAST(cond) SetEvent(*(cond))
+#define COND_DESTROY(cond) do { if (*(cond)) CloseHandle(*(cond)); } while(0)
+#else // Use native condition variables
 #define CONDITION_VAR CONDITION_VARIABLE
-#define COND_INIT(cond) InitializeConditionVariable(&cond)
-#define COND_WAIT(cond, mutex) SleepConditionVariableCS(&cond, &mutex, INFINITE)
-#define COND_SIGNAL(cond) WakeConditionVariable(&cond)
-#define COND_BROADCAST(cond) WakeAllConditionVariable(&cond)
+#define COND_INIT(cond) InitializeConditionVariable(cond)
+#define COND_WAIT(cond, mutex) SleepConditionVariableCS(cond, mutex, INFINITE)
+#define COND_SIGNAL(cond) WakeConditionVariable(cond)
+#define COND_BROADCAST(cond) WakeAllConditionVariable(cond)
 #define COND_DESTROY(cond) /* No destroy needed */
-#else
-// Fallback for Windows XP and earlier using manual reset events
-typedef struct {
-    HANDLE event;
-    CRITICAL_SECTION cs;
-    int waiters;
-} CONDITION_VAR;
-
-#define COND_INIT(cond) do { \
-    (cond).event = CreateEvent(NULL, TRUE, FALSE, NULL); \
-    InitializeCriticalSection(&(cond).cs); \
-    (cond).waiters = 0; \
-} while(0)
-
-#define COND_WAIT(cond, mutex) do { \
-    EnterCriticalSection(&(cond).cs); \
-    (cond).waiters++; \
-    LeaveCriticalSection(&(cond).cs); \
-    LeaveCriticalSection(&(mutex)); \
-    WaitForSingleObject((cond).event, INFINITE); \
-    EnterCriticalSection(&(cond).cs); \
-    (cond).waiters--; \
-    if ((cond).waiters == 0) ResetEvent((cond).event); \
-    LeaveCriticalSection(&(cond).cs); \
-    EnterCriticalSection(&(mutex)); \
-} while(0)
-
-#define COND_SIGNAL(cond) do { \
-    EnterCriticalSection(&(cond).cs); \
-    if ((cond).waiters > 0) SetEvent((cond).event); \
-    LeaveCriticalSection(&(cond).cs); \
-} while(0)
-
-#define COND_BROADCAST(cond) do { \
-    EnterCriticalSection(&(cond).cs); \
-    if ((cond).waiters > 0) SetEvent((cond).event); \
-    LeaveCriticalSection(&(cond).cs); \
-} while(0)
-
-#define COND_DESTROY(cond) do { \
-    CloseHandle((cond).event); \
-    DeleteCriticalSection(&(cond).cs); \
-} while(0)
 #endif
 
-#define SYNC_ADD(ptr, val) InterlockedExchangeAdd((volatile LONG*)(ptr), (LONG)(val))
+#ifndef SRWLOCK_MISSING // Fallback for older Windows versions without SRWLOCK support
+typedef struct { CRITICAL_SECTION cs; int readers; CONDITION_VARIABLE cond; } RWLOCK; // simple reader-writer lock using critical section and condition variable
+#define RW_INIT(lock) do { InitializeCriticalSection(&((lock)->cs)); (lock)->readers = 0; COND_INIT(&((lock)->cond)); } while(0)
+#define RW_RDLOCK(lock) do { EnterCriticalSection(&((lock)->cs)); while ((lock)->readers < 0) COND_WAIT(&((lock)->cond), &((lock)->cs)); (lock)->readers++; LeaveCriticalSection(&((lock)->cs)); } while(0)
+#define RW_WRLOCK(lock) do { EnterCriticalSection(&((lock)->cs)); while ((lock)->readers != 0) COND_WAIT(&((lock)->cond), &((lock)->cs)); (lock)->readers = -1; LeaveCriticalSection(&((lock)->cs)); } while(0)
+#define RW_UNLOCK(lock) do { EnterCriticalSection(&((lock)->cs)); if ((lock)->readers == -1) (lock)->readers = 0; else (lock)->readers--; COND_BROADCAST(&((lock)->cond)); LeaveCriticalSection(&((lock)->cs)); } while(0)
+#define RW_DESTROY(lock) do { DeleteCriticalSection(&((lock)->cs)); COND_DESTROY(&((lock)->cond)); } while(0)
+#else // Use native SRW locks
+#define RWLOCK SRWLOCK
+#define RW_INIT(lock) InitializeSRWLock(lock)
+#define RW_RDLOCK(lock) AcquireSRWLockShared(lock)
+#define RW_WRLOCK(lock) AcquireSRWLockExclusive(lock)
+#define RW_UNLOCK(lock) ReleaseSRWLockShared(lock)  // Works for both; SRW automatically knows
+#define RW_DESTROY(lock) /* no-op */
+#endif
 
-#else
+#else // POSIX
 #include <pthread.h>
 #include <unistd.h>
 #include <sys/sysinfo.h>
+#include <stdint.h>
 #define A_THREAD pthread_t
 #define THREAD_RETURN_TYPE void*
 #define THREAD_CREATE(thread, func, arg) pthread_create(&thread, NULL, func, arg)
 #define THREAD_JOIN(thread) pthread_join(thread, NULL)
 #define THREAD_EXIT(value) pthread_exit((void*)(size_t)value)
 #define MUTEX pthread_mutex_t
-#define MUTEX_INIT(mutex) pthread_mutex_init(&mutex, NULL)
-#define MUTEX_LOCK(mutex) pthread_mutex_lock(&mutex)
-#define MUTEX_UNLOCK(mutex) pthread_mutex_unlock(&mutex)
-#define MUTEX_DESTROY(mutex) pthread_mutex_destroy(&mutex)
+#define MUTEX_INIT(mutex) pthread_mutex_init(&(mutex), NULL)
+#define MUTEX_LOCK(mutex) pthread_mutex_lock(&(mutex))
+#define MUTEX_TRYLOCK(mutex) pthread_mutex_trylock(&(mutex))
+#define MUTEX_UNLOCK(mutex) pthread_mutex_unlock(&(mutex))
+#define MUTEX_DESTROY(mutex) pthread_mutex_destroy(&(mutex))
 #define CONDITION_VAR pthread_cond_t
-#define COND_INIT(cond) pthread_cond_init(&cond, NULL)
-#define COND_WAIT(cond, mutex) pthread_cond_wait(&cond, &mutex)
-#define COND_SIGNAL(cond) pthread_cond_signal(&cond)
-#define COND_BROADCAST(cond) pthread_cond_broadcast(&cond)
-#define COND_DESTROY(cond) pthread_cond_destroy(&cond)
+#define COND_INIT(cond) pthread_cond_init(&(cond), NULL)
+#define COND_WAIT(cond, mutex) pthread_cond_wait(&(cond), &(mutex))
+#define COND_SIGNAL(cond) pthread_cond_signal(&(cond))
+#define COND_BROADCAST(cond) pthread_cond_broadcast(&(cond))
+#define COND_DESTROY(cond) pthread_cond_destroy(&(cond))
+#define RWLOCK pthread_rwlock_t
+#define RW_INIT(lock) pthread_rwlock_init(&(lock), NULL)
+#define RW_RDLOCK(lock) pthread_rwlock_rdlock(&(lock))
+#define RW_WRLOCK(lock) pthread_rwlock_wrlock(&(lock))
+#define RW_UNLOCK(lock) pthread_rwlock_unlock(&(lock))
+#define RW_DESTROY(lock) pthread_rwlock_destroy(&(lock))
+#endif
 
-#define SYNC_ADD(ptr, val) __sync_fetch_and_add((ptr), (val))
+#ifdef __GNUC__   // MinGW or Cygwin GCC
+#define SYNC_ADD(ptr, val) __sync_fetch_and_add((volatile UINT32*)(ptr), (UINT32)(val))
+#define SYNC_AND(ptr, val) __sync_fetch_and_and((volatile UINT32*)(ptr), (UINT32)(val))
+#define SYNC_OR(ptr, val)  __sync_fetch_and_or((volatile UINT32*)(ptr), (UINT32)(val))
+#else              // MSVC
+#define SYNC_ADD(ptr, val) InterlockedExchangeAdd((volatile LONG*)(ptr), (LONG)(val))
+#define SYNC_AND(ptr, val) InterlockedAnd((volatile LONG*)(ptr), (LONG)(val))
+#define SYNC_OR(ptr, val)  InterlockedOr((volatile LONG*)(ptr), (LONG)(val))
 #endif
 
 #define MAX_DEMONS 687
@@ -116,9 +113,13 @@ typedef struct {
 #define MAX_COMPONENTS 3
 #define MAX_FUSIONS 6
 #define ELEMENTALS 4
+#define BITSET_WORDS ((MAX_DEMONS + 31) / 32) // number of 32-bit words needed to represent MAX_DEMONS bits
+
+#define COMPONENT_COUNT(demon_id, fusion_index) all_demons[demon_id].fusions[fusion_index].demon_components ? all_demons[demon_id].fusions[fusion_index].component_count : 2
 
 // Forward declarations
 typedef struct Demon Demon;
+typedef struct WorkItem WorkItem;
 
 // Data structures
 
@@ -152,23 +153,29 @@ typedef struct {
 	char group_count; // number of anchor groups
 } RaceAnchors;
 
+typedef struct ParentWRef {
+	WorkItem* parent; // parent work item
+	int ref_count; // reference count for this parent
+} ParentWRef;
+
+typedef struct {
+	volatile UINT32 bits[BITSET_WORDS]; // bitmask for available demons
+} Bitmask;
+
 // Work item for the queue
 typedef struct WorkItem {
 	int demon_id; // demon to process
-	bool available_demons[MAX_DEMONS]; // available demons for this work item
+	Bitmask available_demons; // bitmask for which demons are still available for processing this work item
 	int depth; // current depth
 	FusionNode* result; // pointer to where to store the result
-	MUTEX result_mutex;
+	RWLOCK result_rwlock; // rwlock to protect result access
 	char processed; // where in the processing we are (0 for not started, 1 for processing, 2 for done)
-	struct WorkItem** parent; // parents work items (for pruning)
-	char parent_count; // number of parents
+	ParentWRef parent[MAX_DEMONS]; // parents work items (for pruning)
 	MUTEX parent_mutex; // mutex to protect parent data
-	struct WorkItem*** children; // child work items
-	int fusion_count; // number of fusions
-	MUTEX child_mutex; // mutex to protect child data
+	struct WorkItem*** children; // child work items [fusion][component]
+	int fusion_count; // number of fusions (component count is calculated from demon data)
+	RWLOCK child_rwlock; // rwlock to protect child data
 	int best_fusion_count; // best fusion count found so far
-	MUTEX available_mutex; // mutex to protect available demons
-	volatile int ref_count; // reference count to manage lifetime across threads
 } WorkItem;
 
 typedef struct Demon {
@@ -177,7 +184,7 @@ typedef struct Demon {
 	Fusion* fusions;  // Possible fusions for this demon
 	char fusion_count; // number of fusions available
 	WorkItem* work_item; // work item for this demon
-	MUTEX work_mutex; // mutex to protect work item
+	RWLOCK work_rwlock; // mutex to protect work item
 	AnchorGroup* anchor_group; // anchor group this demon belongs to
 } Demon;
 
@@ -199,10 +206,9 @@ typedef struct {
 } WorkQueue;
 
 // Worker thread context
-typedef struct Worker {
+typedef struct {
 	A_THREAD thread;
 	int id;
-	bool active;
 	WorkQueue* queue;
 } Worker;
 
@@ -224,12 +230,10 @@ static WorkQueue* work_queue;
 // Work depth limit for BFS levels
 static volatile int work_depth_limit = 0; // current maximum depth being processed
 static volatile int active_work_items[MAX_DEMONS / 2];
-MUTEX active_work_mutex;
-CONDITION_VAR work_depth_cond;
-MUTEX solution_mutex;
-CONDITION_VAR solution_cond;
-// Coarse-grained mutex to protect the work-graph (parent/child relationships)
-MUTEX work_graph_mutex;
+static MUTEX active_work_mutex;
+static CONDITION_VAR work_depth_cond;
+static MUTEX solution_mutex;
+static CONDITION_VAR solution_cond;
 
 #ifdef DEBUG
 static volatile int total_work_items = 0;
@@ -244,7 +248,41 @@ static time_t start_time;
 
 // forward declarations of functions
 static void update_this_work(WorkItem* work);
-static void destroy_work_item(WorkItem* work);
+
+// Bitmask operations
+
+static inline void bitmask_set_all(Bitmask *bm) {
+    for (int i = 0; i < BITSET_WORDS; i++) bm->bits[i] = ~0L;
+    // Clear bits beyond MAX_DEMONS
+    if (MAX_DEMONS % 32 != 0) {
+        bm->bits[BITSET_WORDS - 1] &= (1L << (MAX_DEMONS % 32)) - 1;
+    }
+}
+
+static inline bool bitmask_test(const Bitmask *bm, int id) {
+    int w = id / 32, b = id % 32;
+    return (bm->bits[w] >> b) & 1L;
+}
+
+// Atomic clear a bit
+static inline void bitmask_clear(Bitmask *bm, int id) {
+    int w = id / 32, b = id % 32;
+    SYNC_AND(&bm->bits[w], ~(1L << b));
+}
+
+// Atomic AND of two bitmasks: dest = dest & src
+static inline void bitmask_and(Bitmask *dest, const Bitmask *src) {
+    for (int i = 0; i < BITSET_WORDS; i++) {
+        SYNC_AND(&dest->bits[i], src->bits[i]);
+    }
+}
+
+// Atomic OR of two bitmasks: dest = dest | src
+static inline void bitmask_or(Bitmask *dest, const Bitmask *src) {
+    for (int i = 0; i < BITSET_WORDS; i++) {
+        SYNC_OR(&dest->bits[i], src->bits[i]);
+    }
+}
 
 // File operations
 static FILE* my_fopen(const char* filename, const char* mode) {
@@ -263,6 +301,10 @@ static cJSON* load_json(const char* filename) {
 	const long length = ftell(file);
 	fseek(file, 0, SEEK_SET);
 	char* data = (char*)malloc(length + 1);
+	if (data == NULL) {
+        fclose(file);
+        return NULL;
+    }
 	fread(data, 1, length, file);
 	fclose(file);
 	data[length] = '\0';
@@ -361,7 +403,7 @@ static void load_demons(const char* filename) {
 		cJSON* level = cJSON_GetObjectItem(demon_entry, "level");
 		cJSON* fuse_able = cJSON_GetObjectItem(demon_entry, "fuse_able");
 		Demon* this_demon = &all_demons[demon_id];
-		MUTEX_INIT(this_demon->work_mutex);
+		RW_INIT(&this_demon->work_rwlock);
 		this_demon->race = (char)(race ? race->valueint : 0);
 		this_demon->level = (unsigned char)(level ? level->valueint : 0);
 		this_demon->fusions = NULL;
@@ -656,10 +698,6 @@ static FusionNode* create_fusion_node(const int demon_id, const char component_c
 	return node;
 }
 
-static FusionNode* create_leaf_fusion_node(const int demon_id) {
-	return create_fusion_node(demon_id, 0, NULL);
-}
-
 static WorkQueue* create_work_queue() {
 	WorkQueue* queue = (WorkQueue*)malloc(sizeof(WorkQueue));
 	if (!queue) {
@@ -670,15 +708,15 @@ static WorkQueue* create_work_queue() {
 	queue->rear = 0;
 	queue->count = 0;
 	queue->shutdown = false;
-	MUTEX_INIT(queue->queue_mutex);
-	COND_INIT(queue->queue_not_empty);
+	MUTEX_INIT(&queue->queue_mutex);
+	COND_INIT(&queue->queue_not_empty);
 	return queue;
 }
 
 static void destroy_work_queue(WorkQueue* queue) {
 	if (!queue) return;
-	MUTEX_DESTROY(queue->queue_mutex);
-	COND_DESTROY(queue->queue_not_empty);
+	MUTEX_DESTROY(&queue->queue_mutex);
+	COND_DESTROY(&queue->queue_not_empty);
 	free(queue);
 }
 
@@ -686,24 +724,22 @@ static bool enqueue_work(WorkQueue* queue, WorkItem* work) {
 #ifdef SPAM
 	fprintf(debug_file, "Enqueuing work for demon ID: %d at depth %d\n", work->demon_id, work->depth);
 #endif
-	MUTEX_LOCK(queue->queue_mutex);
+	MUTEX_LOCK(&queue->queue_mutex);
 	if (queue->shutdown) {
-		MUTEX_UNLOCK(queue->queue_mutex);
+		MUTEX_UNLOCK(&queue->queue_mutex);
 		return false;
 	}
-	/* queue holds a reference to the work item */
-	SYNC_ADD(&work->ref_count, 1);
 	queue->items[queue->rear] = work;
 	queue->rear = (queue->rear + 1); // no wrap around needed, max size is MAX_DEMONS ensured by logic
-	queue->count++;
-	MUTEX_LOCK(active_work_mutex);
-	active_work_items[work->depth]++;
-	MUTEX_UNLOCK(active_work_mutex);
+	SYNC_ADD(&queue->count, 1);
+	MUTEX_LOCK(&active_work_mutex);
+	SYNC_ADD(&active_work_items[work->depth], 1);
+	MUTEX_UNLOCK(&active_work_mutex);
 #ifdef DEBUG
 	SYNC_ADD(&total_work_items, 1);
 #endif
-	COND_SIGNAL(queue->queue_not_empty);
-	MUTEX_UNLOCK(queue->queue_mutex);
+	COND_SIGNAL(&queue->queue_not_empty);
+	MUTEX_UNLOCK(&queue->queue_mutex);
 	return true;
 }
 
@@ -711,18 +747,18 @@ static WorkItem* dequeue_work(WorkQueue* queue) {
 #ifdef SPAM
 	fprintf(debug_file, "Dequeueing work item\n");
 #endif
-	MUTEX_LOCK(queue->queue_mutex);
+	MUTEX_LOCK(&queue->queue_mutex);
 	while (queue->count == 0 && !queue->shutdown) {
-		COND_WAIT(queue->queue_not_empty, queue->queue_mutex);
+		COND_WAIT(&queue->queue_not_empty, &queue->queue_mutex);
 	}
 	if (queue->shutdown) {
-		MUTEX_UNLOCK(queue->queue_mutex);
+		MUTEX_UNLOCK(&queue->queue_mutex);
 		return NULL;
 	}
 	WorkItem* work = queue->items[queue->front];
 	queue->front = (queue->front + 1);
-	queue->count--;
-	MUTEX_UNLOCK(queue->queue_mutex);
+	SYNC_ADD(&queue->count, -1);
+	MUTEX_UNLOCK(&queue->queue_mutex);
 #ifdef SPAM
 	fprintf(debug_file, "Dequeued work for demon ID: %d at depth %d\n", work->demon_id, work->depth);
 #endif
@@ -730,67 +766,22 @@ static WorkItem* dequeue_work(WorkQueue* queue) {
 }
 
 static void shutdown_work_queue(WorkQueue* queue) {
-	MUTEX_LOCK(queue->queue_mutex);
+	MUTEX_LOCK(&queue->queue_mutex);
 	queue->shutdown = true;
-	COND_BROADCAST(queue->queue_not_empty);
-	MUTEX_UNLOCK(queue->queue_mutex);
-}
-
-static WorkItem* create_work_item(int demon_id, bool* available_demons, int depth) {
-	WorkItem* work = (WorkItem*)malloc(sizeof(WorkItem));
-	if (!work) {
-		fprintf(stderr, "Error: Failed to allocate memory for work item\n");
-		return NULL;
-	}
-	work->demon_id = demon_id;
-	memcpy(work->available_demons, available_demons, MAX_DEMONS * sizeof(bool));
-	work->depth = depth;
-	work->result = NULL;
-	MUTEX_INIT(work->result_mutex);
-	work->processed = 0;
-	work->parent = NULL;
-	work->parent_count = 0;
-	MUTEX_INIT(work->parent_mutex);
-	work->children = NULL;
-	work->fusion_count = 0;
-	MUTEX_INIT(work->child_mutex);
-	work->best_fusion_count = MAX_DEMONS;
-	MUTEX_INIT(work->available_mutex);
-	/* publish work_item after fully initializing the WorkItem to avoid races */
-	/* initialize reference count: 1 for the global `all_demons` pointer */
-	work->ref_count = 1;
-	/* publish under graph lock to avoid races with readers/destroyers */
-	MUTEX_LOCK(work_graph_mutex);
-	all_demons[demon_id].work_item = work;
-	MUTEX_UNLOCK(work_graph_mutex);
-	return work;
-}
-
-static inline void work_dec_ref(WorkItem* w) {
-	if (!w) {
-		fprintf(stderr, "Error: work_dec_ref called with NULL\n");
-		return;
-	}
-	if (SYNC_ADD(&w->ref_count, -1) == 1) {
-		destroy_work_item(w);
-	}
+	COND_BROADCAST(&queue->queue_not_empty);
+	MUTEX_UNLOCK(&queue->queue_mutex);
 }
 
 static void destroy_work_item(WorkItem* work) {
 	if (!work) return;
-	/* Protect graph modifications while tearing down children/parents */
-	MUTEX_LOCK(work_graph_mutex);
+	/* Instrumentation: announce destruction with demon id and pointer */
+#ifdef SPAM
+	fprintf(inst_file, "[INST] destroy_work_item: work=%p demon=%d children=%p parents=%p\n", (void*)work, work->demon_id, (void*)work->children, (void*)work->parent);
+	fflush(inst_file);
+#endif
 	if (work->children) {
-		/* release references to children held by this work item */
-		int comp_count = all_demons[work->demon_id].fusions ? (all_demons[work->demon_id].fusions->demon_components ? all_demons[work->demon_id].fusions->component_count : 2) : 2;
 		for (int i = 0; i < work->fusion_count; i++) {
 			if (work->children[i]) {
-				for (int c = 0; c < comp_count; c++) {
-					WorkItem* child = work->children[i][c];
-					if (child) {
-						work_dec_ref(child);
-					}
-				}
 				free(work->children[i]);
 				work->children[i] = NULL;
 			}
@@ -798,22 +789,64 @@ static void destroy_work_item(WorkItem* work) {
 		free(work->children);
 		work->children = NULL;
 	}
-	if (work->parent) {
-		free(work->parent);
-		work->parent = NULL;
-	}
-	MUTEX_DESTROY(work->result_mutex);
-	MUTEX_DESTROY(work->parent_mutex);
-	MUTEX_DESTROY(work->child_mutex);
+	RW_DESTROY(&work->result_rwlock);
+	MUTEX_DESTROY(&work->parent_mutex);
+	RW_DESTROY(&work->child_rwlock);
 	all_demons[work->demon_id].work_item = NULL;
-	MUTEX_UNLOCK(work_graph_mutex);
 	free(work);
 }
 
+static WorkItem* create_work_item(int demon_id, const Bitmask* available_demons, int depth) {
+	WorkItem* work = (WorkItem*)malloc(sizeof(WorkItem));
+	if (!work) {
+		fprintf(stderr, "Error: Failed to allocate memory for work item\n");
+		return NULL;
+	}
+	work->demon_id = demon_id;
+	work->available_demons = *available_demons;
+	work->depth = depth;
+	work->result = NULL;
+	RW_INIT(&work->result_rwlock);
+	work->processed = 0;
+	MUTEX_INIT(&work->parent_mutex);
+	memset(work->parent, 0, sizeof(ParentWRef) * MAX_DEMONS);
+	work->children = NULL;
+	work->fusion_count = 0;
+	RW_INIT(&work->child_rwlock);
+	work->best_fusion_count = MAX_DEMONS;
+	/* publish work_item after fully initializing the WorkItem to avoid races */
+	RW_WRLOCK(&all_demons[demon_id].work_rwlock);
+	if (all_demons[demon_id].work_item) {
+		/* another thread created a work item for this demon concurrently */
+		bitmask_and(&work->available_demons, &all_demons[demon_id].work_item->available_demons); // merge available demons
+		RW_UNLOCK(&all_demons[demon_id].work_rwlock);
+		destroy_work_item(work); // clean up this redundant work item
+		return all_demons[demon_id].work_item;
+	}
+	all_demons[demon_id].work_item = work;
+	RW_UNLOCK(&all_demons[demon_id].work_rwlock);
+	if (!enqueue_work(work_queue, work)) {
+		fprintf(stderr, "Error: Failed to enqueue work item for demon ID %d\n", demon_id);
+		destroy_work_item(work);
+		return NULL;
+	}
+#ifdef SPAM
+	fprintf(debug_file, "Enqueued new work item for demon ID: %d\n", (int)(demon_id));
+#endif
+	/* Instrumentation: report creation and initial refcount */
+#ifdef SPAM
+	if (inst_file) {
+		fprintf(inst_file, "[INST] create_work_item: work=%p demon=%d depth=%d\n", (void*)work, demon_id, depth);
+		fflush(inst_file);
+	}
+#endif
+	return work;
+}
+
 static void set_result(WorkItem* work, FusionNode* result) {
-	MUTEX_LOCK(work->result_mutex);
+	RW_WRLOCK(&work->result_rwlock);
 	work->result = result;
-	MUTEX_UNLOCK(work->result_mutex);
+	RW_UNLOCK(&work->result_rwlock);
 }
 
 static int get_num_cpus() {
@@ -828,79 +861,70 @@ static int get_num_cpus() {
 
 // count cyrrent shortest possible fusion count for an incomplete fusion
 static int count_incomplete_children(WorkItem** child_work, char component_count) {
-	int incomplete_count = 1;
-	for (char comp = 0; comp < component_count; comp++) {
-		if (!child_work[comp]) {
-			fprintf(stderr, "Error: null child work item encountered during count_incomplete_children\n");
-		}
-		MUTEX_LOCK(child_work[comp]->result_mutex);
-		if (child_work[comp]->result) {
-			incomplete_count += child_work[comp]->result->fusion_count;
-			MUTEX_UNLOCK(child_work[comp]->result_mutex);
-			continue;
-		}
-		MUTEX_UNLOCK(child_work[comp]->result_mutex);
-		char component_count = all_demons[child_work[comp]->demon_id].fusions->demon_components ? all_demons[child_work[comp]->demon_id].fusions->component_count : 2;
-		char this_count = child_work[comp]->fusion_count == 0 ? 1 : MAX_DEMONS;
-		for (char c = 0; c < child_work[comp]->fusion_count; c++) {
-			if (count_incomplete_children(child_work[comp]->children[c], component_count) < this_count) {
-				this_count = count_incomplete_children(child_work[comp]->children[c], component_count);
-			}
-		}
-		incomplete_count += this_count;
-	}
-	return incomplete_count;
+    int incomplete_count = 1; // Start with 1 for the current fusion
+    for (int comp = 0; comp < component_count; comp++) {
+        if (!child_work[comp]) {
+            fprintf(stderr, "Warning: null child work item encountered during count_incomplete_children\n");
+            incomplete_count += MAX_DEMONS; // Penalize heavily for null child
+            break;
+        }
+        WorkItem* child = child_work[comp];
+        RW_RDLOCK(&child->result_rwlock);
+        if (child->result) { // Child already has a complete result
+            incomplete_count += child->result->fusion_count;
+            RW_UNLOCK(&child->result_rwlock);
+            continue;
+        }
+		RW_UNLOCK(&child->result_rwlock);
+        int this_count = MAX_DEMONS; // Start with worst-case
+		RW_RDLOCK(&child->child_rwlock);
+        if (child->fusion_count == 0) { // No fusions explored yet for this child - optimistic estimate
+            this_count = 0; // Just the child itself
+        } else { // Recursively explore child's fusions to find best incomplete path
+            for (int c = 0; c < child->fusion_count; c++) {
+				char child_component_count = COMPONENT_COUNT(child->demon_id, c);
+                if (!child->children || !child->children[c]) {
+                    continue;
+                }
+                int candidate = count_incomplete_children(child->children[c], child_component_count);
+                if (candidate < this_count) {
+                    this_count = candidate;
+                }
+            }
+        }
+        RW_UNLOCK(&child->child_rwlock);
+        incomplete_count += this_count;
+    }
+    return incomplete_count;
 }
 
-// prune a fusion from a work item, steps into children to remove a parent reference
+// prune a fusion from a work item, steps into children to remove a parent reference. Assumes caller has already determined the fusion to prune and locked parent's child_mutex.
 static void prune_fusion(WorkItem* parent, char fusion_index, char component_count) {
 #ifdef SPAM
 	fprintf(debug_file, "Pruning fusion index %d for demon ID %d\n", fusion_index, parent->demon_id);
 #endif
-#ifdef SPAM
-	if (inst_file) {
-		fprintf(inst_file, "[INST] prune_fusion: parent=%d fusion_index=%d component_count=%d parent->fusion_count=%d parent_children=%p\n", parent->demon_id, fusion_index, component_count, parent->fusion_count, (void*)parent->children);
-		fflush(inst_file);
-	} else {
-		fprintf(debug_file, "[INST] prune_fusion: parent=%d fusion_index=%d component_count=%d parent->fusion_count=%d parent_children=%p\n", parent->demon_id, fusion_index, component_count, parent->fusion_count, (void*)parent->children);
-		fflush(debug_file);
+	if (!parent || fusion_index >= parent->fusion_count) {
+		fprintf(stderr, "Error: Invalid parameters to prune_fusion\n");
+		return;
 	}
-#endif
-	/* Protect graph while removing parent references and updating parent's children */
-	MUTEX_LOCK(work_graph_mutex);
-	/* Remove parent reference from each child and decrement child's refcount */
+	if (!parent->children || !parent->children[fusion_index]) {
+		fprintf(stderr, "Error: Attempted to prune non-existent fusion index %d for demon ID %d\n", fusion_index, parent->demon_id);
+		return;
+	}
 	for (int comp = 0; comp < component_count; comp++) {
-		WorkItem* child = NULL;
-		if (parent->children && parent->children[fusion_index]) child = parent->children[fusion_index][comp];
-		if (!child) continue;
-		MUTEX_LOCK(child->parent_mutex);
-		for (int p = 0; p < child->parent_count; p++) {
-			if (child->parent[p] == parent) {
-#ifdef SPAM
-				fprintf(debug_file, "Removing parent demon ID %d from child demon ID %d\n", parent->demon_id, child->demon_id);
-#endif
-				for (int q = p; q < child->parent_count - 1; q++) {
-					child->parent[q] = child->parent[q + 1];
-				}
-				child->parent_count--;
-				break;
-			}
+		WorkItem* child = parent->children[fusion_index][comp];
+		if (!child) {
+			fprintf(stderr, "Warning: Null child work item encountered during prune_fusion for demon ID %d\n", parent->demon_id);
+			continue;
 		}
-		MUTEX_UNLOCK(child->parent_mutex);
-		/* parent no longer references child */
-		work_dec_ref(child);
+		MUTEX_LOCK(&child->parent_mutex);
+		child->parent[parent->demon_id].ref_count--;
+		MUTEX_UNLOCK(&child->parent_mutex);
 	}
-#ifdef SPAM
-	fprintf(debug_file, "Removing fusion index %d from parent demon ID %d\n", fusion_index, parent->demon_id);
-#endif
-	for (int c = fusion_index; c < parent->fusion_count - 1; c++) {
-		parent->children[c] = parent->children[c + 1];
+	for (int i = fusion_index; i < parent->fusion_count - 1; i++) {
+		parent->children[i] = parent->children[i + 1];
 	}
 	parent->fusion_count--;
-	MUTEX_UNLOCK(work_graph_mutex);
-#ifdef DEBUG
-	SYNC_ADD(&pruned_branches, 1);
-#endif
 }
 
 static void update_parents(WorkItem* child_work) {
@@ -908,9 +932,13 @@ static void update_parents(WorkItem* child_work) {
 		fprintf(stderr, "Error: Invalid parameters to update_parents\n");
 		return;
 	}
-	for (char p = 0; p < child_work->parent_count; p++) {
-		update_this_work(child_work->parent[p]);
+	MUTEX_LOCK(&child_work->parent_mutex);
+	for (int p = 0; p < MAX_DEMONS; p++) {
+		if (child_work->parent[p].ref_count > 0) {
+			update_this_work(child_work->parent[p].parent);
+		}
 	}
+	MUTEX_UNLOCK(&child_work->parent_mutex);
 }
 
 static void update_this_work(WorkItem* work) {
@@ -918,49 +946,56 @@ static void update_this_work(WorkItem* work) {
 		fprintf(stderr, "Error: Null work item passed to update_this_work\n");
 		return;
 	}
-	MUTEX_LOCK(work->child_mutex);
-	char component_count = all_demons[work->demon_id].fusions->demon_components ? all_demons[work->demon_id].fusions->component_count : 2;
-	for (char c = 0; c < work->fusion_count; c++) {
+	RW_RDLOCK(&work->child_rwlock);
+	for (int c = 0; c < work->fusion_count; c++) {
+		char component_count = COMPONENT_COUNT(work->demon_id, c);
 		bool all_done = true;
 		int this_fusion_count = 1;
-		for (char comp = 0; comp < component_count; comp++) {
-			MUTEX_LOCK(work->children[c][comp]->result_mutex);
+		for (int comp = 0; comp < component_count; comp++) {
+			RW_RDLOCK(&work->result_rwlock);
 			if (!work->children[c][comp]->result) {
 				all_done = false;
-				MUTEX_UNLOCK(work->children[c][comp]->result_mutex);
+				RW_UNLOCK(&work->result_rwlock);
 				break;
 			}
 			this_fusion_count += work->children[c][comp]->result->fusion_count;
-			MUTEX_UNLOCK(work->children[c][comp]->result_mutex);
+			RW_UNLOCK(&work->result_rwlock);
 		}
 		if (all_done && this_fusion_count < work->best_fusion_count) {
 			work->best_fusion_count = this_fusion_count;
 		}
 	}
+	RW_UNLOCK(&work->child_rwlock);
 	if (work->best_fusion_count < MAX_DEMONS) { // check for pruning opportunity
-		for (char c = 0; c < work->fusion_count; c++) {
+		RW_WRLOCK(&work->child_rwlock);
+		for (int c = 0; c < work->fusion_count; c++) {
+			char component_count = COMPONENT_COUNT(work->demon_id, c);
 			int this_fusion_count = 1;
 			bool safe_prune = true;
-			for (char comp = 0; comp < component_count; comp++) {
+			for (int comp = 0; comp < component_count; comp++) {
+				RW_RDLOCK(&work->result_rwlock);
 				if (!work->children[c][comp] || !work->children[c][comp]->result) {
 					safe_prune = false;
 					break;
 				}
 				this_fusion_count += work->children[c][comp]->result->fusion_count;
+				RW_UNLOCK(&work->children[c][comp]->result_rwlock);
 			}
-			if (safe_prune && this_fusion_count > work->best_fusion_count) {
-				prune_fusion(work, c--, component_count);
-			} else if (!safe_prune && count_incomplete_children(work->children[c], component_count) >= work->best_fusion_count) {
+			if ((safe_prune && this_fusion_count > work->best_fusion_count) || (!safe_prune && count_incomplete_children(work->children[c], component_count) >= work->best_fusion_count)) {
 				prune_fusion(work, c--, component_count);
 			}
 		}
+		RW_UNLOCK(&work->child_rwlock);
 		if (work->fusion_count == 1) { // only one fusion left, can finalize
+			RW_RDLOCK(&work->child_rwlock);
+			char component_count = COMPONENT_COUNT(work->demon_id, 0);
 			FusionNode** component_nodes = (FusionNode**)malloc(component_count * sizeof(FusionNode*));
 			if (!component_nodes) {
 				fprintf(stderr, "Error: Failed to allocate memory for component nodes\n");
 				return;
 			}
-			for (char i = 0; i < component_count; i++) {
+			for (int i = 0; i < component_count; i++) {
+				RW_RDLOCK(&work->children[0][i]->result_rwlock);
 				if (work->children[0][i] && work->children[0][i]->result) {
 					component_nodes[i] = work->children[0][i]->result;
 				} else {
@@ -968,164 +1003,132 @@ static void update_this_work(WorkItem* work) {
 					free(component_nodes);
 					return;
 				}
+				RW_UNLOCK(&work->children[0][i]->result_rwlock);
 			}
+			RW_UNLOCK(&work->child_rwlock);
 			FusionNode* result_node = create_fusion_node(work->demon_id, component_count, component_nodes);
 			free(component_nodes);
 			set_result(work, result_node);
 			if (work->demon_id == target_demon_id) { // root node
 				// signal main thread that we're done
-				COND_SIGNAL(solution_cond);
-				MUTEX_LOCK(active_work_mutex);
+				COND_SIGNAL(&solution_cond);
+				MUTEX_LOCK(&active_work_mutex);
 				work_depth_limit = MAX_DEMONS; // unblock all threads
-				COND_BROADCAST(work_depth_cond);
-				MUTEX_UNLOCK(active_work_mutex);
+				COND_BROADCAST(&work_depth_cond);
+				MUTEX_UNLOCK(&active_work_mutex);
 			} else {
 				update_parents(work);
 			}
 		}
 	}
-	MUTEX_UNLOCK(work->child_mutex);
 }
 
-static bool add_demons_to_work_queue(WorkItem* parent_work, Demon** demons, char demon_count) {
+static bool recursive_check_cycle(WorkItem* current_work, WorkItem* target_work) {
+	if (!current_work || !target_work) {
+		fprintf(stderr, "Error: Invalid parameters to recursive_check_cycle\n");
+		return false;
+	}
+	if (current_work == target_work) {
+		return true; // cycle detected
+	}
+	RW_RDLOCK(&current_work->child_rwlock);
+	for (int i = 0; i < current_work->fusion_count; i++) {
+		char component_count = COMPONENT_COUNT(current_work->demon_id, i);
+		if (!current_work->children || !current_work->children[i]) {
+			continue;
+		}
+		for (char c = 0; c < component_count; c++) {
+			if (recursive_check_cycle(current_work->children[i][c], target_work)) {
+				RW_UNLOCK(&current_work->child_rwlock);
+#ifdef SPAM
+				fprintf(debug_file, "Cycle detected during recursive check: Demon ID %d is a component of its own parent demon ID %d\n", current_work->children[i][c]->demon_id, current_work->demon_id);
+#endif
+				return true;
+			}
+		}
+	}
+	RW_UNLOCK(&current_work->child_rwlock);
+	return false;
+}
+
+static bool add_demons_to_work_queue(WorkItem* parent_work, Demon** demons, int demon_count) {
 	if (!parent_work || !demons) {
 		fprintf(stderr, "Error: Invalid parameters to add_demons_to_work_queue\n");
 		return false;
 	}
-	// Validate demon pointers in the array to avoid NULL dereferences
-	for (char i = 0; i < demon_count; i++) {
+#ifdef SPAM
+	fprintf(debug_file, "Adding %d demons to work queue for parent demon ID: %d\n", demon_count, parent_work->demon_id);
+#endif
+	for (char i = 0; i < demon_count; i++) { // first check for cycles
 		if (!demons[i]) {
-			fprintf(stderr, "Error: NULL demon pointer at index %d in add_demons_to_work_queue\n", (int)i);
+			fprintf(stderr, "Error: NULL demon pointer at index %d in add_demons_to_work_queue\n", i);
 			return false;
 		}
-	}
-#ifdef SPAM
-	fprintf(debug_file, "Adding demons to work queue for parent demon ID: %d\n", parent_work->demon_id);
-#endif
-	/* Grab coarse-grained work-graph lock to avoid races between readers and destroyers */
-	MUTEX_LOCK(work_graph_mutex);
-	bool add_fusion = true;
-	for (char i = 0; i < demon_count; i++) {
-		MUTEX_LOCK(demons[i]->work_mutex);
-	}
-	for (char i = 0; i < demon_count; i++) { // first check for cycles
 		if(demons[i]->work_item) {
 			WorkItem* child_work = demons[i]->work_item;
-			/* take a local reference to prevent simultaneous destroy while inspecting */
-			SYNC_ADD(&child_work->ref_count, 1);
 #ifdef SPAM
-				if (inst_file) {
-					fprintf(inst_file, "[INST] add_demons: parent=%d demon_idx=%d demon_id=%d child_work=%p child_work->ref=%d child_work->fusion_count=%d\n", parent_work->demon_id, i, (int)(demons[i]-all_demons), (void*)child_work, child_work?child_work->ref_count:0, child_work?child_work->fusion_count:0);
-					fflush(inst_file);
-				} else {
-					fprintf(debug_file, "[INST] add_demons: parent=%d demon_idx=%d demon_id=%d child_work=%p child_work->ref=%d child_work->fusion_count=%d\n", parent_work->demon_id, i, (int)(demons[i]-all_demons), (void*)child_work, child_work?child_work->ref_count:0, child_work?child_work->fusion_count:0);
-					fflush(debug_file);
-				}
+			if (inst_file) {
+				fprintf(inst_file, "[INST] add_demons: parent=%d demon_idx=%d demon_id=%d child_work=%p child_work->fusion_count=%d\n", parent_work->demon_id, i, (int)(demons[i]-all_demons), (void*)child_work, child_work?child_work->fusion_count:0);
+				fflush(inst_file);
+			} else {
+				fprintf(debug_file, "[INST] add_demons: parent=%d demon_idx=%d demon_id=%d child_work=%p child_work->fusion_count=%d\n", parent_work->demon_id, i, (int)(demons[i]-all_demons), (void*)child_work, child_work?child_work->fusion_count:0);
+				fflush(debug_file);
+			}
 #endif
-			Fusion* child_fusions = all_demons[child_work->demon_id].fusions;
-			char child_comp_count = (child_fusions && child_fusions->demon_components) ? child_fusions->component_count : 2;
-			for (char f = 0; f < child_work->fusion_count; f++) {
-				WorkItem** child_arr = (child_work->children && child_work->children[f]) ? child_work->children[f] : NULL;
-				for (char c = 0; c < child_comp_count; c++) {
-					if (child_arr && child_arr[c] == parent_work) { // cycle detected, prune and then do not add fusion
+			if (recursive_check_cycle(child_work, parent_work)) { // cycle detected, do not add this fusion
 #ifdef SPAM
-						fprintf(debug_file, "Cycle detected: Demon ID %d is a component of its own parent demon ID %d\n", demons[i]->work_item->demon_id, parent_work->demon_id);
+				fprintf(debug_file, "Cycle detected: Demon ID %d is a component of its own parent demon ID %d\n", demons[i]->work_item->demon_id, parent_work->demon_id);
 #endif
-						prune_fusion(child_work, f--, child_comp_count);
-						parent_work->available_demons[demons[i] - all_demons] = false;
-						add_fusion = false;
-						break;
-					}
-				}
+				bitmask_clear(&parent_work->available_demons, demons[i] - all_demons); // mark this demon as unavailable for future fusions in this branch
+				return false;
 			}
 		}
-	}
-	/* release local references taken while checking for cycles */
-	for (char i = 0; i < demon_count; i++) {
-		if (demons[i] && demons[i]->work_item) work_dec_ref(demons[i]->work_item);
-	}
-	if (!add_fusion) {
-		/* release temporary refs taken while checking for cycles */
-		for (char i = 0; i < demon_count; i++) {
-			if (demons[i] && demons[i]->work_item) work_dec_ref(demons[i]->work_item);
-		}
-		for (char i = 0; i < demon_count; i++) {
-			MUTEX_UNLOCK(demons[i]->work_mutex);
-		}
-		MUTEX_UNLOCK(work_graph_mutex);
-		return false; // do not add this fusion due to cycle
-	}
-	MUTEX_LOCK(parent_work->child_mutex);
-	/* expand children array safely */
-	WorkItem*** tmp_children = (WorkItem***)realloc(parent_work->children, (parent_work->fusion_count + 1) * sizeof(WorkItem**));
-	if (!tmp_children) {
+	} // if we reach here, no cycles detected, we can safely add the fusion
+	RW_WRLOCK(&parent_work->child_rwlock);
+	parent_work->children = (WorkItem***)realloc(parent_work->children, (parent_work->fusion_count + 1) * sizeof(WorkItem**));
+	if (!parent_work->children) {
 		fprintf(stderr, "Error: Failed to expand parent children array for demon ID %d\n", parent_work->demon_id);
-		MUTEX_UNLOCK(parent_work->child_mutex);
-		for (char i = 0; i < demon_count; i++) {
-			MUTEX_UNLOCK(demons[i]->work_mutex);
-		}
-		MUTEX_UNLOCK(work_graph_mutex);
+		RW_UNLOCK(&parent_work->child_rwlock);
 		return false;
 	}
-	parent_work->children = tmp_children;
 	parent_work->children[parent_work->fusion_count] = (WorkItem**)malloc(demon_count * sizeof(WorkItem*));
 	if (!parent_work->children[parent_work->fusion_count]) {
 		fprintf(stderr, "Error: Failed to allocate child pointers for parent demon ID %d\n", parent_work->demon_id);
-		MUTEX_UNLOCK(parent_work->child_mutex);
-		for (char i = 0; i < demon_count; i++) {
-			MUTEX_UNLOCK(demons[i]->work_mutex);
-		}
-		MUTEX_UNLOCK(work_graph_mutex);
+		RW_UNLOCK(&parent_work->child_rwlock);
 		return false;
 	}
 	char processed_children = 0;
 	for (char i = 0; i < demon_count; i++) {
 		Demon* demon = demons[i];
 		WorkItem* child_work;
+		RW_RDLOCK(&demon->work_rwlock);
 		if (!demon->work_item) {
-			bool available_demons[MAX_DEMONS];
-			memcpy(available_demons, parent_work->available_demons, MAX_DEMONS * sizeof(bool));
-			child_work = create_work_item(demon - all_demons, available_demons, parent_work->depth + 1);
+			RW_UNLOCK(&demon->work_rwlock);
+			child_work = create_work_item(demon - all_demons, &parent_work->available_demons, parent_work->depth + 1);
 			if (!child_work) {
 				fprintf(stderr, "Error: Failed to create work item for demon ID: %d\n", (int)(demon - all_demons));
-				MUTEX_UNLOCK(demon->work_mutex);
 				continue;
 			}
-			MUTEX_LOCK(child_work->parent_mutex);
-			child_work->parent = (WorkItem**)malloc(sizeof(WorkItem*));
-			child_work->parent[child_work->parent_count++] = parent_work;
-			/* parent now references child */
-			SYNC_ADD(&child_work->ref_count, 1);
-			MUTEX_UNLOCK(child_work->parent_mutex);
-			enqueue_work(work_queue, child_work);
 		} else {
 #ifdef SPAM
 			fprintf(debug_file, "Reusing existing work item for demon ID: %d, attaching to parent demon ID: %d\n", (int)(demon - all_demons), parent_work->demon_id);
 #endif
-			// add parent reference
 			child_work = demon->work_item;
+			RW_UNLOCK(&demon->work_rwlock);
 			// bitwise and parent's available demons to child's available demons
-			MUTEX_LOCK(child_work->available_mutex);
-			for (int d = 0; d < MAX_DEMONS; d++) {
-				child_work->available_demons[d] = child_work->available_demons[d] & parent_work->available_demons[d];
-			}
-			MUTEX_UNLOCK(child_work->available_mutex);
-			MUTEX_LOCK(child_work->parent_mutex);
-			child_work->parent = (WorkItem**)realloc(child_work->parent, (child_work->parent_count + 1) * sizeof(WorkItem*));
-			child_work->parent[child_work->parent_count++] = parent_work;
-			/* parent now references child */
-			SYNC_ADD(&child_work->ref_count, 1);
+			RW_RDLOCK(&child_work->result_rwlock);
 			if (child_work->result) processed_children++;
-			MUTEX_UNLOCK(child_work->parent_mutex);
+			else bitmask_and(&child_work->available_demons, &parent_work->available_demons);
+			RW_UNLOCK(&child_work->result_rwlock);
 		}
-		/* parent keeps a reference to the child */
-		SYNC_ADD(&child_work->ref_count, 1);
+		MUTEX_LOCK(&child_work->parent_mutex);
+		child_work->parent[parent_work->demon_id].parent = parent_work;
+		child_work->parent[parent_work->demon_id].ref_count += 1;
+		MUTEX_UNLOCK(&child_work->parent_mutex);
 		parent_work->children[parent_work->fusion_count][i] = child_work;
-		MUTEX_UNLOCK(demon->work_mutex);
 	}
 	parent_work->fusion_count++;
-	MUTEX_UNLOCK(parent_work->child_mutex);
-	MUTEX_UNLOCK(work_graph_mutex);
+	RW_UNLOCK(&parent_work->child_rwlock);
 	if (processed_children == demon_count) {
 #ifdef SPAM
 		fprintf(debug_file, "All child work items already processed for parent demon ID: %d\n", parent_work->demon_id);
@@ -1145,7 +1148,8 @@ static bool check_demon_availability(WorkItem* work, const Demon* demon) {
 		fprintf(stderr, "Error: Demon ID %d out of bounds in check_demon_availability\n", demon_id);
 		return false;
 	}
-	return (work->available_demons[demon_id] && (all_demons[demon_id].fusions != NULL || base_demons[demon_id]));
+	bool available = bitmask_test(&work->available_demons, demon_id) && (all_demons[demon_id].fusions != NULL || base_demons[demon_id]);
+	return available;
 }
 
 static bool explore_special_fusion(WorkItem* parent_work, Fusion* fusion) {
@@ -1251,46 +1255,34 @@ static void process_demon_work(WorkItem* work) {
 #ifdef SPAM
 	fprintf(debug_file, "Processing work for demon ID: %d at depth %d\n", work->demon_id, work->depth);
 #endif
-	if (work->depth > MAX_DEMONS / 2) {
-		FusionNode* result = (FusionNode*)malloc(sizeof(FusionNode));
-		result->components = NULL;
-		result->fusion_count = MAX_DEMONS;
-		result->demon_count = MAX_DEMONS;
-		result->demon_id = work->demon_id;
-		result->component_count = 0;
-		set_result(work, result);
-		return;
-	}
-	Demon* demon = &all_demons[work->demon_id];
 	if (base_demons[work->demon_id]) {
 #ifdef SPAM
 		fprintf(debug_file, "Demon ID: %d is a base demon, creating leaf fusion node\n", work->demon_id);
 #endif
-		MUTEX_LOCK(work->result_mutex);
-		work->result = create_leaf_fusion_node(work->demon_id);
-		MUTEX_LOCK(work->parent_mutex);
-		MUTEX_UNLOCK(work->result_mutex);
-		update_parents(work);
-		MUTEX_UNLOCK(work->parent_mutex);
+		  RW_WRLOCK(&work->result_rwlock);
+		  work->result = create_fusion_node(work->demon_id, 0, NULL); // leaf node
+		  RW_UNLOCK(&work->result_rwlock);
+		  MUTEX_LOCK(&work->parent_mutex);
+		  update_parents(work);
+		  MUTEX_UNLOCK(&work->parent_mutex);
 	} else {
-		MUTEX_LOCK(work->available_mutex);
-		work->available_demons[work->demon_id] = false;
-		MUTEX_UNLOCK(work->available_mutex);
+		bitmask_clear(&work->available_demons, work->demon_id); // mark self as unavailable to prevent self-fusion
 #ifdef SPAM
 		fprintf(debug_file, "Exploring fusions for demon ID: %d at depth %d\n", work->demon_id, work->depth);
 #endif
-		MUTEX_LOCK(active_work_mutex);
+		MUTEX_LOCK(&active_work_mutex);
 		while (work->depth > work_depth_limit && !work_queue->shutdown) { // wait to be allowed to process this level of fusion
-			COND_WAIT(work_depth_cond, active_work_mutex);
+			COND_WAIT(&work_depth_cond, &active_work_mutex);
 		}
 		if (work_queue->shutdown) {
-			MUTEX_UNLOCK(active_work_mutex);
+			MUTEX_UNLOCK(&active_work_mutex);
 			return;
 		}
-		MUTEX_UNLOCK(active_work_mutex);
+		MUTEX_UNLOCK(&active_work_mutex);
 #ifdef SPAM
 		fprintf(debug_file, "Worker proceeding with demon ID: %d at depth %d\n", work->demon_id, work->depth);
 #endif
+		Demon* demon = &all_demons[work->demon_id];
 		bool any_completed = false;
 		for (char f = 0; f < demon->fusion_count; f++) {
 			if (demon->fusions[f].demon_components != NULL) {
@@ -1308,22 +1300,19 @@ static void process_demon_work(WorkItem* work) {
 			update_this_work(work);
 		}
 	}
-#ifdef SPAM
-	fprintf(debug_file, "Worker finished processing demon ID: %d at depth %d\n", work->demon_id, work->depth);
-#endif
-	MUTEX_LOCK(active_work_mutex);
-	active_work_items[work->depth]--;
+	MUTEX_LOCK(&active_work_mutex);
+	SYNC_ADD(&active_work_items[work->depth], -1);
 	for (int d = 0; d <= work->depth + 1; d++) {
 		if (active_work_items[d] > 0) {
 #ifdef SPAM
-			fprintf(debug_file, "Active work being set to %d\n", d);
+			fprintf(debug_file, "Active work being set to %d by demon %d\n", d, work->demon_id);
 #endif
 			work_depth_limit = d; // allow next depth level to process only if all work at current level is done
-			COND_BROADCAST(work_depth_cond);
+			COND_BROADCAST(&work_depth_cond);
 			break;
 		}
 	}
-	MUTEX_UNLOCK(active_work_mutex);
+	MUTEX_UNLOCK(&active_work_mutex);
 }
 
 static THREAD_RETURN_TYPE worker_thread(void* arg) {
@@ -1332,7 +1321,7 @@ static THREAD_RETURN_TYPE worker_thread(void* arg) {
 #ifdef DEBUG
 	fprintf(debug_file, "Worker %d starting\n", worker->id);
 #endif
-	while (worker->active) {
+	while (true) {
 #ifdef SPAM
 		fprintf(debug_file, "Worker %d waiting for work\n", worker->id);
 #endif
@@ -1346,9 +1335,10 @@ static THREAD_RETURN_TYPE worker_thread(void* arg) {
 		process_demon_work(work);
 #ifdef DEBUG
 		SYNC_ADD(&processed_work_items, 1);
+#ifdef SPAM
+		fprintf(debug_file, "Worker %d finished processing demon ID: %d at depth %d\n", worker->id, work->demon_id, work->depth);
 #endif
-		/* worker no longer needs the queue reference to this work item */
-		work_dec_ref(work);
+#endif
 	}
 	return 0;
 }
@@ -1368,13 +1358,9 @@ static bool init_thread_pool() {
 	}
 	for (int i = 0; i < num_workers; i++) {
 		workers[i].id = i;
-		workers[i].active = true;
 		workers[i].queue = work_queue;
 		if (!THREAD_CREATE(workers[i].thread, worker_thread, &workers[i])) {
 			fprintf(stderr, "Error: Failed to create worker thread %d\n", i);
-			for (int j = 0; j < i; j++) {
-				workers[j].active = false;
-			}
 			shutdown_work_queue(work_queue);
 			free(workers);
 			destroy_work_queue(work_queue);
@@ -1388,9 +1374,7 @@ static void shutdown_thread_pool() {
 	if (!workers) return;
 	shutdown_work_queue(work_queue);
 	for (int i = 0; i < num_workers; i++) {
-		if (workers[i].active) {
-			THREAD_JOIN(workers[i].thread);
-		}
+		THREAD_JOIN(workers[i].thread);
 	}
 	free(workers);
 	destroy_work_queue(work_queue);
@@ -1412,9 +1396,9 @@ static void print_fusion_tree(FusionNode* node, int depth) {
 }
 
 static FusionNode* find_fusion_chain(int target_demon) {
-	bool available_demons[MAX_DEMONS];
-	memset(available_demons, true, MAX_DEMONS * sizeof(bool));
-	WorkItem* root_work = create_work_item(target_demon, available_demons, 0);
+	Bitmask available_demons;
+	bitmask_set_all(&available_demons);
+	WorkItem* root_work = create_work_item(target_demon, &available_demons, 0);
 	if (!root_work) {
 		fprintf(stderr, "Error: Failed to create root work item\n");
 		return NULL;
@@ -1426,11 +1410,12 @@ static FusionNode* find_fusion_chain(int target_demon) {
 #ifdef SPAM
 	fprintf(debug_file, "Enqueued root work item for demon %d\n", target_demon);
 #endif
-	MUTEX_LOCK(solution_mutex);
+	MUTEX_LOCK(&solution_mutex);
 	while (!root_work->result) {
-		COND_WAIT(solution_cond, solution_mutex);
+		COND_WAIT(&solution_cond, &solution_mutex);
 	}
-	MUTEX_UNLOCK(solution_mutex);
+	MUTEX_UNLOCK(&solution_mutex);
+	shutdown_thread_pool(); // stop workers now that we're done, to allow main thread to proceed with printing results without contention
 #ifdef SPAM
 	fprintf(debug_file, "Fusion chain found for demon %d\n", target_demon);
 #endif
@@ -1476,12 +1461,10 @@ int main(int argc, char* argv[]) {
 			printf("Warning: Skipping invalid demon ID: %s\n", argv[i]);
 		}
 	}
-	MUTEX_INIT(solution_mutex);
-	COND_INIT(solution_cond);
-	MUTEX_INIT(active_work_mutex);
-	COND_INIT(work_depth_cond);
-	/* initialize global work-graph mutex */
-	MUTEX_INIT(work_graph_mutex);
+	MUTEX_INIT(&solution_mutex);
+	COND_INIT(&solution_cond);
+	MUTEX_INIT(&active_work_mutex);
+	COND_INIT(&work_depth_cond);
 	for (int i = 0; i < MAX_DEMONS / 2; i++) {
 		active_work_items[i] = 0;
 	}
@@ -1510,7 +1493,6 @@ int main(int argc, char* argv[]) {
 	fprintf(debug_file, "Starting fusion search for demon %d\n", target_demon_id);
 #endif
 	FusionNode* result = find_fusion_chain(target_demon_id);
-	shutdown_thread_pool();
 	if (result) {
 		printf("\nFound optimal fusion chain for demon %d:\n", target_demon_id);
 		printf("Total fusions: %d\n", result->fusion_count);
@@ -1532,7 +1514,7 @@ int main(int argc, char* argv[]) {
 	// Cleanup
 	for (int i = 0; i < MAX_DEMONS; i++) {
 		free_demon_resources(&all_demons[i]);
-		MUTEX_DESTROY(all_demons[i].work_mutex);
+		RW_DESTROY(&all_demons[i].work_rwlock);
 	}
 	for (int i = 0; i < MAX_RACES; i++) {
 		if (demons_by_race[i].demons) {
@@ -1552,11 +1534,10 @@ int main(int argc, char* argv[]) {
 			race_anchors[i].groups = NULL;
 		}
 	}
-	MUTEX_DESTROY(solution_mutex);
-	COND_DESTROY(solution_cond);
-	MUTEX_DESTROY(active_work_mutex);
-	COND_DESTROY(work_depth_cond);
-	MUTEX_DESTROY(work_graph_mutex);
+	MUTEX_DESTROY(&solution_mutex);
+	COND_DESTROY(&solution_cond);
+	MUTEX_DESTROY(&active_work_mutex);
+	COND_DESTROY(&work_depth_cond);
 	printf("Program completed successfully\n");
 	return 0;
 }
