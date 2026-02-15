@@ -1,0 +1,1753 @@
+{
+  "2": [
+    {
+      "demons": [
+        226,
+        322
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        404
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        543,
+        551
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        611
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        685,
+        596,
+        397
+      ]
+    },
+    {
+      "demons": [
+        677,
+        138,
+        396
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        248,
+        252
+      ],
+      "anchor": true
+    }
+  ],
+  "8": [
+    {
+      "demons": [
+        60,
+        288,
+        306,
+        61,
+        458
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        71,
+        4,
+        151
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        554,
+        369,
+        35,
+        185
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        548,
+        136,
+        184
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        657
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        206,
+        320,
+        217
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        631
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        524,
+        233
+      ]
+    }
+  ],
+  "11": [
+    {
+      "demons": [
+        426
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        298,
+        331,
+        455,
+        19,
+        461
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        425,
+        22
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        608,
+        383,
+        37
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        119
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        207,
+        10,
+        160
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        428
+      ]
+    },
+    {
+      "demons": [
+        579
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        647,
+        443,
+        195,
+        279
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        632
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        253
+      ]
+    }
+  ],
+  "16": [
+    {
+      "demons": [
+        513
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        564,
+        224
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        208
+      ]
+    },
+    {
+      "demons": [
+        143,
+        159
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        199,
+        228,
+        250,
+        281
+      ]
+    }
+  ],
+  "24": [
+    {
+      "demons": [
+        266,
+        330
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        56,
+        289
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        578,
+        375
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        238
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        237
+      ]
+    },
+    {
+      "demons": [
+        580,
+        537,
+        376
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        581
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        503,
+        529,
+        79,
+        437,
+        347,
+        616,
+        58
+      ]
+    }
+  ],
+  "28": [
+    {
+      "demons": [
+        515,
+        292
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        618,
+        293
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        287
+      ]
+    },
+    {
+      "demons": [
+        619
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        643,
+        54,
+        53,
+        55
+      ]
+    }
+  ],
+  "32": [
+    {
+      "demons": [
+        520,
+        32,
+        180,
+        275
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        483,
+        101,
+        567
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        684,
+        43
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        240,
+        594
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        121
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        63,
+        439
+      ]
+    },
+    {
+      "demons": [
+        296,
+        297
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        261
+      ]
+    }
+  ],
+  "37": [
+    {
+      "demons": [
+        88,
+        532,
+        152,
+        268,
+        572
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        623,
+        386
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        480,
+        352
+      ]
+    },
+    {
+      "demons": [
+        540
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        468,
+        506,
+        360,
+        574,
+        585
+      ]
+    }
+  ],
+  "38": [
+    {
+      "demons": [
+        264,
+        329,
+        17
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        467,
+        23,
+        177,
+        274
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        509,
+        362,
+        29,
+        595
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        123,
+        313,
+        6,
+        593
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        45,
+        305,
+        2,
+        592
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        84
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        486,
+        354,
+        535
+      ]
+    }
+  ],
+  "40": [
+    {
+      "demons": [
+        65
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        402,
+        20
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        205,
+        9,
+        460
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        422
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        519
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        209
+      ]
+    },
+    {
+      "demons": [
+        408
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        556
+      ]
+    },
+    {
+      "demons": [
+        245
+      ],
+      "anchor": true
+    }
+  ],
+  "3": [
+    {
+      "demons": [
+        120,
+        599,
+        312,
+        155,
+        269
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        142,
+        317
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        399,
+        334,
+        479
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        496,
+        27,
+        357,
+        462
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        522,
+        181,
+        637
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        622,
+        638,
+        191
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        148,
+        134
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        124,
+        314,
+        635,
+        157
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        259,
+        77,
+        660,
+        630
+      ]
+    }
+  ],
+  "5": [
+    {
+      "demons": [
+        584,
+        377
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        654,
+        465
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        140,
+        216,
+        316,
+        501,
+        198,
+        141,
+        285
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        239
+      ]
+    },
+    {
+      "demons": [
+        433,
+        502,
+        174
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        267,
+        168
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        430,
+        345,
+        263,
+        167
+      ]
+    }
+  ],
+  "10": [
+    {
+      "demons": [
+        504,
+        358,
+        664,
+        636
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        493,
+        356,
+        26
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        482,
+        24
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        563
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        661
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        662,
+        676,
+        683
+      ]
+    }
+  ],
+  "18": [
+    {
+      "demons": [
+        570,
+        665,
+        104,
+        255
+      ]
+    },
+    {
+      "demons": [
+        545,
+        367,
+        463,
+        605,
+        201,
+        424,
+        446
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        597,
+        380
+      ]
+    },
+    {
+      "demons": [
+        403,
+        110,
+        335,
+        606,
+        562,
+        169,
+        273
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        286,
+        18
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        557,
+        398,
+        370,
+        36,
+        186
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        244
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        416,
+        21
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        212,
+        321
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        641,
+        194,
+        278
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        621,
+        385
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        659
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        508,
+        221,
+        361,
+        28
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        633,
+        210,
+        102,
+        390,
+        202,
+        464
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        612
+      ]
+    }
+  ],
+  "25": [
+    {
+      "demons": [
+        470,
+        350,
+        178
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        411,
+        337,
+        170
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        494
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        495
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        604,
+        672,
+        393,
+        62,
+        89
+      ]
+    }
+  ],
+  "29": [
+    {
+      "demons": [
+        589,
+        378
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        648,
+        211,
+        391
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        64,
+        150
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        87,
+        310
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        527,
+        550
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        582,
+        538
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        423,
+        343,
+        172
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        128
+      ]
+    },
+    {
+      "demons": [
+        601,
+        188
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        85,
+        309
+      ]
+    }
+  ],
+  "31": [
+    {
+      "demons": [
+        52,
+        3,
+        663
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        214,
+        11
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        449,
+        348,
+        549,
+        450
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        235,
+        325,
+        12
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        302
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        607,
+        539,
+        382
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        105,
+        410,
+        139,
+        552
+      ]
+    },
+    {
+      "demons": [
+        412
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        453,
+        349,
+        135
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        559,
+        372
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        507,
+        568,
+        452,
+        451,
+        534
+      ]
+    }
+  ],
+  "33": [
+    {
+      "demons": [
+        282,
+        283
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        541
+      ]
+    },
+    {
+      "demons": [
+        126
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        260,
+        487,
+        301,
+        445,
+        93,
+        586
+      ]
+    }
+  ],
+  "39": [
+    {
+      "demons": [
+        247,
+        327,
+        14,
+        163
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        96,
+        311,
+        5,
+        153
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        262,
+        328,
+        16,
+        166,
+        272
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        561
+      ]
+    },
+    {
+      "demons": [
+        505,
+        359
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        489,
+        220,
+        355,
+        490
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        122,
+        156
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        227,
+        323,
+        161
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        624,
+        387,
+        192
+      ],
+      "anchor": true
+    }
+  ],
+  "4": [
+    {
+      "demons": [
+        591
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        82
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        427,
+        344,
+        173
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        485,
+        179
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        644,
+        39
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        518,
+        31
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        414,
+        339,
+        171
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        678
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        674,
+        394
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        590,
+        379
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        418,
+        649
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        609
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        241
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        517
+      ]
+    }
+  ],
+  "9": [
+    {
+      "demons": [
+        131
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        246,
+        326
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        560,
+        373,
+        137
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        558,
+        371,
+        57
+      ]
+    }
+  ],
+  "12": [
+    {
+      "demons": [
+        417,
+        341
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        434
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        74,
+        440,
+        308
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        530,
+        536,
+        365,
+        617,
+        200
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        413,
+        338
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        203
+      ]
+    },
+    {
+      "demons": [
+        600,
+        299
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        401,
+        400
+      ]
+    }
+  ],
+  "17": [
+    {
+      "demons": [
+        132,
+        315,
+        442,
+        8
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        626,
+        639
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        86
+      ]
+    },
+    {
+      "demons": [
+        90,
+        441
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        645
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        497
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        421,
+        225,
+        655
+      ]
+    }
+  ],
+  "19": [
+    {
+      "demons": [
+        59,
+        668
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        236,
+        13,
+        116
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        213,
+        218,
+        115
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        149,
+        319,
+        469
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        95,
+        118,
+        133
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        521,
+        117,
+        364
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        523,
+        492,
+        525
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        232,
+        324,
+        546,
+        256,
+        1,
+        94,
+        73,
+        81
+      ]
+    }
+  ],
+  "20": [
+    {
+      "demons": [
+        146,
+        318,
+        459
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        44,
+        457
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        625,
+        388,
+        193
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        257,
+        165
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        679,
+        196
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        447
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        682
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        438,
+        175
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        130
+      ]
+    },
+    {
+      "demons": [
+        68
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        436
+      ]
+    },
+    {
+      "demons": [
+        675,
+        395,
+        42
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        80
+      ]
+    },
+    {
+      "demons": [
+        145
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        565
+      ]
+    }
+  ],
+  "23": [
+    {
+      "demons": [
+        667,
+        40
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        602,
+        381,
+        189,
+        277
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        491,
+        25
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        111
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        107,
+        154
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        603,
+        190
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        587,
+        187
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        542,
+        366
+      ]
+    }
+  ],
+  "26": [
+    {
+      "demons": [
+        686,
+        294
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        429,
+        291
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        407,
+        336,
+        290
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        100,
+        99
+      ]
+    }
+  ],
+  "27": [
+    {
+      "demons": [
+        547,
+        34,
+        368,
+        183,
+        276
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        243,
+        162
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        249,
+        15,
+        164,
+        271
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        75
+      ]
+    },
+    {
+      "demons": [
+        129,
+        7,
+        158,
+        270
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        673,
+        41
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        125
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        544,
+        33,
+        182
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        448,
+        176
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        656,
+        444
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        653,
+        432,
+        431,
+        346,
+        234
+      ]
+    }
+  ],
+  "30": [
+    {
+      "demons": [
+        516
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        526
+      ]
+    },
+    {
+      "demons": [
+        514,
+        223,
+        363,
+        30
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        620,
+        38
+      ],
+      "anchor": true
+    },
+    {
+      "demons": [
+        300,
+        610
+      ]
+    },
+    {
+      "demons": [
+        69,
+        531,
+        307,
+        197,
+        70
+      ],
+      "anchor": true
+    }
+  ]
+}
