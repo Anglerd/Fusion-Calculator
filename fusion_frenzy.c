@@ -79,23 +79,23 @@ typedef struct { CRITICAL_SECTION cs; int readers; CONDITION_VARIABLE cond; } RW
 #define THREAD_JOIN(thread) pthread_join(thread, NULL)
 #define THREAD_EXIT(value) pthread_exit((void*)(size_t)value)
 #define MUTEX pthread_mutex_t
-#define MUTEX_INIT(mutex) pthread_mutex_init(&(mutex), NULL)
-#define MUTEX_LOCK(mutex) pthread_mutex_lock(&(mutex))
-#define MUTEX_TRYLOCK(mutex) pthread_mutex_trylock(&(mutex))
-#define MUTEX_UNLOCK(mutex) pthread_mutex_unlock(&(mutex))
-#define MUTEX_DESTROY(mutex) pthread_mutex_destroy(&(mutex))
+#define MUTEX_INIT(mutex) pthread_mutex_init(mutex, NULL)
+#define MUTEX_LOCK(mutex) pthread_mutex_lock(mutex)
+#define MUTEX_TRYLOCK(mutex) pthread_mutex_trylock(mutex)
+#define MUTEX_UNLOCK(mutex) pthread_mutex_unlock(mutex)
+#define MUTEX_DESTROY(mutex) pthread_mutex_destroy(mutex)
 #define CONDITION_VAR pthread_cond_t
-#define COND_INIT(cond) pthread_cond_init(&(cond), NULL)
-#define COND_WAIT(cond, mutex) pthread_cond_wait(&(cond), &(mutex))
-#define COND_SIGNAL(cond) pthread_cond_signal(&(cond))
-#define COND_BROADCAST(cond) pthread_cond_broadcast(&(cond))
-#define COND_DESTROY(cond) pthread_cond_destroy(&(cond))
+#define COND_INIT(cond) pthread_cond_init(cond, NULL)
+#define COND_WAIT(cond, mutex) pthread_cond_wait(cond, mutex)
+#define COND_SIGNAL(cond) pthread_cond_signal(cond)
+#define COND_BROADCAST(cond) pthread_cond_broadcast(cond)
+#define COND_DESTROY(cond) pthread_cond_destroy(cond)
 #define RWLOCK pthread_rwlock_t
-#define RW_INIT(lock) pthread_rwlock_init(&(lock), NULL)
-#define RW_RDLOCK(lock) pthread_rwlock_rdlock(&(lock))
-#define RW_WRLOCK(lock) pthread_rwlock_wrlock(&(lock))
-#define RW_UNLOCK(lock) pthread_rwlock_unlock(&(lock))
-#define RW_DESTROY(lock) pthread_rwlock_destroy(&(lock))
+#define RW_INIT(lock) pthread_rwlock_init(lock, NULL)
+#define RW_RDLOCK(lock) pthread_rwlock_rdlock(lock)
+#define RW_WRLOCK(lock) pthread_rwlock_wrlock(lock)
+#define RW_UNLOCK(lock) pthread_rwlock_unlock(lock)
+#define RW_DESTROY(lock) pthread_rwlock_destroy(lock)
 #endif
 
 #ifdef __GNUC__   // MinGW or Cygwin GCC
