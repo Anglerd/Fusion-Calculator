@@ -1,0 +1,5693 @@
+{
+  "322": {
+    "race": 2,
+    "fuse_able": true,
+    "level": 12,
+    "special_fusion": [
+      [
+        226,
+        334,
+        379
+      ]
+    ]
+  },
+  "226": {
+    "race": 2,
+    "fuse_able": true,
+    "level": 20,
+    "min_level": 0,
+    "max_level": 39
+  },
+  "404": {
+    "race": 2,
+    "fuse_able": true,
+    "level": 28,
+    "min_level": 40,
+    "max_level": 55
+  },
+  "543": {
+    "race": 2,
+    "fuse_able": true,
+    "level": 36,
+    "min_level": 56,
+    "max_level": 71
+  },
+  "551": {
+    "race": 2,
+    "fuse_able": false,
+    "level": 92
+  },
+  "611": {
+    "race": 2,
+    "fuse_able": true,
+    "level": 42,
+    "min_level": 72,
+    "max_level": 83
+  },
+  "397": {
+    "race": 2,
+    "fuse_able": false,
+    "level": 1
+  },
+  "685": {
+    "race": 2,
+    "fuse_able": true,
+    "level": 49,
+    "special_fusion": [
+      [
+        543,
+        423,
+        84
+      ]
+    ]
+  },
+  "596": {
+    "race": 2,
+    "fuse_able": false,
+    "level": 52
+  },
+  "138": {
+    "race": 2,
+    "fuse_able": false,
+    "level": 52
+  },
+  "396": {
+    "race": 2,
+    "fuse_able": true,
+    "level": 52,
+    "special_fusion": [
+      [
+        677,
+        390,
+        530
+      ]
+    ]
+  },
+  "677": {
+    "race": 2,
+    "fuse_able": true,
+    "level": 52,
+    "min_level": 84,
+    "max_level": 103
+  },
+  "248": {
+    "race": 2,
+    "fuse_able": true,
+    "level": 65,
+    "min_level": 104,
+    "max_level": 200
+  },
+  "252": {
+    "race": 2,
+    "fuse_able": true,
+    "level": 79,
+    "special_fusion": [
+      [
+        248,
+        685
+      ]
+    ]
+  },
+  "389": {
+    "race": 6,
+    "fuse_able": false,
+    "level": 20
+  },
+  "629": {
+    "race": 6,
+    "fuse_able": true,
+    "level": 42,
+    "special_fusion": [
+      [
+        578,
+        543,
+        411
+      ],
+      [
+        578,
+        404,
+        494
+      ],
+      [
+        578,
+        226,
+        423
+      ]
+    ]
+  },
+  "332": {
+    "race": 6,
+    "fuse_able": false,
+    "level": 30
+  },
+  "303": {
+    "race": 6,
+    "fuse_able": true,
+    "level": 67,
+    "special_fusion": [
+      [
+        686,
+        245
+      ]
+    ]
+  },
+  "222": {
+    "race": 6,
+    "fuse_able": false,
+    "level": 1
+  },
+  "510": {
+    "race": 6,
+    "fuse_able": true,
+    "level": 70,
+    "special_fusion": [
+      [
+        580,
+        677,
+        601
+      ],
+      [
+        530,
+        654,
+        248
+      ],
+      [
+        601,
+        654,
+        677
+      ]
+    ]
+  },
+  "511": {
+    "race": 6,
+    "fuse_able": false,
+    "level": 90
+  },
+  "78": {
+    "race": 6,
+    "fuse_able": true,
+    "level": 72,
+    "special_fusion": [
+      [
+        263,
+        674
+      ]
+    ]
+  },
+  "353": {
+    "race": 6,
+    "fuse_able": false,
+    "level": 50
+  },
+  "481": {
+    "race": 6,
+    "fuse_able": true,
+    "level": 74,
+    "special_fusion": [
+      [
+        407,
+        631,
+        413
+      ],
+      [
+        657,
+        619,
+        413
+      ],
+      [
+        206,
+        600,
+        514
+      ]
+    ]
+  },
+  "628": {
+    "race": 6,
+    "fuse_able": true,
+    "level": 76,
+    "special_fusion": [
+      [
+        510,
+        454,
+        207
+      ]
+    ]
+  },
+  "295": {
+    "race": 6,
+    "fuse_able": true,
+    "level": 80,
+    "special_fusion": [
+      [
+        481,
+        266
+      ]
+    ]
+  },
+  "83": {
+    "race": 6,
+    "fuse_able": true,
+    "level": 85,
+    "special_fusion": [
+      [
+        58,
+        487
+      ]
+    ]
+  },
+  "658": {
+    "race": 6,
+    "fuse_able": true,
+    "level": 97,
+    "special_fusion": [
+      [
+        57,
+        248
+      ],
+      [
+        198,
+        199,
+        201
+      ],
+      [
+        198,
+        199,
+        202
+      ],
+      [
+        198,
+        199,
+        197
+      ],
+      [
+        198,
+        201,
+        197
+      ]
+    ]
+  },
+  "288": {
+    "race": 8,
+    "fuse_able": false,
+    "level": 1
+  },
+  "306": {
+    "race": 8,
+    "fuse_able": true,
+    "level": 6,
+    "special_fusion": [
+      [
+        60,
+        310,
+        319
+      ]
+    ]
+  },
+  "60": {
+    "race": 8,
+    "fuse_able": true,
+    "level": 11,
+    "min_level": 0,
+    "max_level": 21
+  },
+  "61": {
+    "race": 8,
+    "fuse_able": false,
+    "level": 30
+  },
+  "458": {
+    "race": 8,
+    "fuse_able": false,
+    "level": 48
+  },
+  "4": {
+    "race": 8,
+    "fuse_able": false,
+    "level": 17
+  },
+  "71": {
+    "race": 8,
+    "fuse_able": true,
+    "level": 17,
+    "min_level": 22,
+    "max_level": 33
+  },
+  "151": {
+    "race": 8,
+    "fuse_able": false,
+    "level": 76
+  },
+  "369": {
+    "race": 8,
+    "fuse_able": true,
+    "level": 20,
+    "special_fusion": [
+      [
+        554,
+        391,
+        368
+      ]
+    ]
+  },
+  "35": {
+    "race": 8,
+    "fuse_able": false,
+    "level": 25
+  },
+  "554": {
+    "race": 8,
+    "fuse_able": true,
+    "level": 25,
+    "min_level": 34,
+    "max_level": 49
+  },
+  "185": {
+    "race": 8,
+    "fuse_able": false,
+    "level": 76
+  },
+  "136": {
+    "race": 8,
+    "fuse_able": false,
+    "level": 36
+  },
+  "548": {
+    "race": 8,
+    "fuse_able": true,
+    "level": 36,
+    "min_level": 50,
+    "max_level": 71
+  },
+  "184": {
+    "race": 8,
+    "fuse_able": false,
+    "level": 70
+  },
+  "657": {
+    "race": 8,
+    "fuse_able": true,
+    "level": 51,
+    "min_level": 72,
+    "max_level": 101
+  },
+  "320": {
+    "race": 8,
+    "fuse_able": true,
+    "level": 26,
+    "special_fusion": [
+      [
+        206,
+        361,
+        560
+      ]
+    ]
+  },
+  "206": {
+    "race": 8,
+    "fuse_able": true,
+    "level": 64,
+    "min_level": 102,
+    "max_level": 127
+  },
+  "217": {
+    "race": 8,
+    "fuse_able": false,
+    "level": 90
+  },
+  "631": {
+    "race": 8,
+    "fuse_able": true,
+    "level": 71,
+    "min_level": 128,
+    "max_level": 200
+  },
+  "524": {
+    "race": 8,
+    "fuse_able": true,
+    "level": 73,
+    "special_fusion": [
+      [
+        523,
+        631
+      ]
+    ]
+  },
+  "233": {
+    "race": 8,
+    "fuse_able": true,
+    "level": 75,
+    "special_fusion": [
+      [
+        232,
+        631
+      ]
+    ]
+  },
+  "426": {
+    "race": 11,
+    "fuse_able": true,
+    "level": 3,
+    "min_level": 0,
+    "max_level": 5
+  },
+  "331": {
+    "race": 11,
+    "fuse_able": true,
+    "level": 1,
+    "special_fusion": [
+      [
+        298,
+        317,
+        326
+      ]
+    ]
+  },
+  "455": {
+    "race": 11,
+    "fuse_able": false,
+    "level": 1
+  },
+  "19": {
+    "race": 11,
+    "fuse_able": false,
+    "level": 5
+  },
+  "298": {
+    "race": 11,
+    "fuse_able": true,
+    "level": 5,
+    "min_level": 6,
+    "max_level": 9
+  },
+  "461": {
+    "race": 11,
+    "fuse_able": false,
+    "level": 33
+  },
+  "22": {
+    "race": 11,
+    "fuse_able": false,
+    "level": 1
+  },
+  "425": {
+    "race": 11,
+    "fuse_able": true,
+    "level": 11,
+    "min_level": 10,
+    "max_level": 21
+  },
+  "383": {
+    "race": 11,
+    "fuse_able": true,
+    "level": 14,
+    "special_fusion": [
+      [
+        608,
+        312,
+        381
+      ]
+    ]
+  },
+  "37": {
+    "race": 11,
+    "fuse_able": false,
+    "level": 17
+  },
+  "608": {
+    "race": 11,
+    "fuse_able": true,
+    "level": 17,
+    "min_level": 22,
+    "max_level": 33
+  },
+  "119": {
+    "race": 11,
+    "fuse_able": true,
+    "level": 24,
+    "min_level": 34,
+    "max_level": 47
+  },
+  "10": {
+    "race": 11,
+    "fuse_able": false,
+    "level": 30
+  },
+  "207": {
+    "race": 11,
+    "fuse_able": true,
+    "level": 30,
+    "min_level": 48,
+    "max_level": 59
+  },
+  "160": {
+    "race": 11,
+    "fuse_able": false,
+    "level": 61
+  },
+  "428": {
+    "race": 11,
+    "fuse_able": true,
+    "level": 35,
+    "special_fusion": [
+      [
+        425,
+        207
+      ]
+    ]
+  },
+  "579": {
+    "race": 11,
+    "fuse_able": true,
+    "level": 35,
+    "min_level": 60,
+    "max_level": 69
+  },
+  "443": {
+    "race": 11,
+    "fuse_able": false,
+    "level": 5
+  },
+  "647": {
+    "race": 11,
+    "fuse_able": true,
+    "level": 41,
+    "min_level": 70,
+    "max_level": 81
+  },
+  "195": {
+    "race": 11,
+    "fuse_able": false,
+    "level": 51
+  },
+  "279": {
+    "race": 11,
+    "fuse_able": true,
+    "level": 51,
+    "special_fusion": [
+      [
+        195,
+        403,
+        602
+      ]
+    ]
+  },
+  "632": {
+    "race": 11,
+    "fuse_able": true,
+    "level": 62,
+    "min_level": 82,
+    "max_level": 200
+  },
+  "253": {
+    "race": 11,
+    "fuse_able": true,
+    "level": 64,
+    "special_fusion": [
+      [
+        632,
+        425,
+        111
+      ]
+    ]
+  },
+  "466": {
+    "race": 14,
+    "fuse_able": true,
+    "level": 32,
+    "special_fusion": [
+      [
+        608,
+        46
+      ]
+    ]
+  },
+  "652": {
+    "race": 14,
+    "fuse_able": true,
+    "level": 34,
+    "special_fusion": [
+      [
+        608,
+        215
+      ]
+    ]
+  },
+  "651": {
+    "race": 14,
+    "fuse_able": true,
+    "level": 36,
+    "special_fusion": [
+      [
+        608,
+        231
+      ]
+    ]
+  },
+  "627": {
+    "race": 14,
+    "fuse_able": true,
+    "level": 38,
+    "special_fusion": [
+      [
+        608,
+        66
+      ]
+    ]
+  },
+  "48": {
+    "race": 14,
+    "fuse_able": true,
+    "level": 65,
+    "special_fusion": [
+      [
+        425,
+        647,
+        632
+      ]
+    ]
+  },
+  "51": {
+    "race": 14,
+    "fuse_able": true,
+    "level": 75,
+    "special_fusion": [
+      [
+        530,
+        74,
+        280
+      ]
+    ]
+  },
+  "106": {
+    "race": 14,
+    "fuse_able": true,
+    "level": 89,
+    "special_fusion": [
+      [
+        58,
+        406
+      ]
+    ]
+  },
+  "513": {
+    "race": 16,
+    "fuse_able": true,
+    "level": 25,
+    "min_level": 0,
+    "max_level": 49
+  },
+  "224": {
+    "race": 16,
+    "fuse_able": false,
+    "level": 1
+  },
+  "564": {
+    "race": 16,
+    "fuse_able": true,
+    "level": 41,
+    "min_level": 50,
+    "max_level": 81
+  },
+  "208": {
+    "race": 16,
+    "fuse_able": true,
+    "level": 41,
+    "special_fusion": [
+      [
+        561,
+        408
+      ]
+    ]
+  },
+  "143": {
+    "race": 16,
+    "fuse_able": true,
+    "level": 46,
+    "min_level": 82,
+    "max_level": 200
+  },
+  "159": {
+    "race": 16,
+    "fuse_able": false,
+    "level": 72
+  },
+  "199": {
+    "race": 16,
+    "fuse_able": false,
+    "level": 70
+  },
+  "228": {
+    "race": 16,
+    "fuse_able": true,
+    "level": 70,
+    "special_fusion": [
+      [
+        405,
+        670,
+        546
+      ]
+    ]
+  },
+  "250": {
+    "race": 16,
+    "fuse_able": true,
+    "level": 70,
+    "special_fusion": [
+      [
+        245,
+        656,
+        625
+      ]
+    ]
+  },
+  "281": {
+    "race": 16,
+    "fuse_able": true,
+    "level": 82,
+    "special_fusion": [
+      [
+        647,
+        513,
+        143
+      ]
+    ]
+  },
+  "330": {
+    "race": 24,
+    "fuse_able": true,
+    "level": 10,
+    "special_fusion": [
+      [
+        266,
+        325,
+        339
+      ]
+    ]
+  },
+  "266": {
+    "race": 24,
+    "fuse_able": true,
+    "level": 18,
+    "min_level": 0,
+    "max_level": 35
+  },
+  "56": {
+    "race": 24,
+    "fuse_able": true,
+    "level": 24,
+    "min_level": 35,
+    "max_level": 47
+  },
+  "375": {
+    "race": 24,
+    "fuse_able": false,
+    "level": 1
+  },
+  "578": {
+    "race": 24,
+    "fuse_able": true,
+    "level": 30,
+    "min_level": 48,
+    "max_level": 59
+  },
+  "238": {
+    "race": 24,
+    "fuse_able": true,
+    "level": 38,
+    "min_level": 60,
+    "max_level": 75
+  },
+  "237": {
+    "race": 24,
+    "fuse_able": false,
+    "level": 46
+  },
+  "537": {
+    "race": 24,
+    "fuse_able": false,
+    "level": 1
+  },
+  "376": {
+    "race": 24,
+    "fuse_able": false,
+    "level": 30
+  },
+  "580": {
+    "race": 24,
+    "fuse_able": true,
+    "level": 55,
+    "min_level": 76,
+    "max_level": 109
+  },
+  "581": {
+    "race": 24,
+    "fuse_able": true,
+    "level": 68,
+    "min_level": 110,
+    "max_level": 200
+  },
+  "503": {
+    "race": 24,
+    "fuse_able": true,
+    "level": 72,
+    "special_fusion": [
+      [
+        80,
+        436,
+        130
+      ]
+    ]
+  },
+  "529": {
+    "race": 24,
+    "fuse_able": true,
+    "level": 76,
+    "special_fusion": [
+      [
+        631,
+        580,
+        654
+      ]
+    ]
+  },
+  "79": {
+    "race": 24,
+    "fuse_able": true,
+    "level": 76,
+    "special_fusion": [
+      [
+        529,
+        74
+      ]
+    ]
+  },
+  "616": {
+    "race": 24,
+    "fuse_able": false,
+    "level": 30
+  },
+  "437": {
+    "race": 24,
+    "fuse_able": true,
+    "level": 81,
+    "special_fusion": [
+      [
+        578,
+        530
+      ]
+    ]
+  },
+  "58": {
+    "race": 24,
+    "fuse_able": true,
+    "level": 84,
+    "special_fusion": [
+      [
+        529,
+        282,
+        413
+      ]
+    ]
+  },
+  "289": {
+    "race": 24,
+    "fuse_able": false,
+    "level": 50
+  },
+  "347": {
+    "race": 24,
+    "fuse_able": false,
+    "level": 60
+  },
+  "515": {
+    "race": 28,
+    "fuse_able": true,
+    "level": 31,
+    "min_level": 0,
+    "max_level": 61
+  },
+  "292": {
+    "race": 28,
+    "fuse_able": false,
+    "level": 50
+  },
+  "618": {
+    "race": 28,
+    "fuse_able": true,
+    "level": 34,
+    "min_level": 62,
+    "max_level": 67
+  },
+  "293": {
+    "race": 28,
+    "fuse_able": false,
+    "level": 50
+  },
+  "287": {
+    "race": 28,
+    "fuse_able": true,
+    "level": 65,
+    "special_fusion": [
+      [
+        685,
+        209,
+        231
+      ]
+    ]
+  },
+  "619": {
+    "race": 28,
+    "fuse_able": true,
+    "level": 71,
+    "min_level": 68,
+    "max_level": 200
+  },
+  "643": {
+    "race": 28,
+    "fuse_able": true,
+    "level": 80,
+    "special_fusion": [
+      [
+        396,
+        280,
+        507
+      ]
+    ]
+  },
+  "54": {
+    "race": 28,
+    "fuse_able": true,
+    "level": 84,
+    "special_fusion": [
+      [
+        396,
+        481,
+        140
+      ]
+    ]
+  },
+  "55": {
+    "race": 28,
+    "fuse_able": true,
+    "level": 70,
+    "special_fusion": [
+      [
+        292,
+        293,
+        289
+      ]
+    ]
+  },
+  "53": {
+    "race": 28,
+    "fuse_able": true,
+    "level": 94,
+    "special_fusion": [
+      [
+        396,
+        481,
+        266
+      ]
+    ]
+  },
+  "283": {
+    "race": 33,
+    "fuse_able": false,
+    "level": 60
+  },
+  "520": {
+    "race": 32,
+    "fuse_able": true,
+    "level": 1,
+    "min_level": 0,
+    "max_level": 1
+  },
+  "32": {
+    "race": 32,
+    "fuse_able": false,
+    "level": 11
+  },
+  "180": {
+    "race": 32,
+    "fuse_able": false,
+    "level": 19
+  },
+  "275": {
+    "race": 32,
+    "fuse_able": true,
+    "level": 19,
+    "special_fusion": [
+      [
+        180,
+        120,
+        547
+      ]
+    ]
+  },
+  "483": {
+    "race": 32,
+    "fuse_able": true,
+    "level": 28,
+    "min_level": 2,
+    "max_level": 55
+  },
+  "101": {
+    "race": 32,
+    "fuse_able": false,
+    "level": 30
+  },
+  "567": {
+    "race": 32,
+    "fuse_able": false,
+    "level": 30
+  },
+  "43": {
+    "race": 32,
+    "fuse_able": false,
+    "level": 41
+  },
+  "684": {
+    "race": 32,
+    "fuse_able": true,
+    "level": 41,
+    "min_level": 56,
+    "max_level": 81
+  },
+  "240": {
+    "race": 32,
+    "fuse_able": true,
+    "level": 45,
+    "min_level": 82,
+    "max_level": 89
+  },
+  "594": {
+    "race": 32,
+    "fuse_able": false,
+    "level": 73
+  },
+  "121": {
+    "race": 32,
+    "fuse_able": true,
+    "level": 69,
+    "min_level": 90,
+    "max_level": 137
+  },
+  "439": {
+    "race": 32,
+    "fuse_able": false,
+    "level": 35
+  },
+  "63": {
+    "race": 32,
+    "fuse_able": true,
+    "level": 70,
+    "special_fusion": [
+      [
+        90,
+        124
+      ]
+    ]
+  },
+  "297": {
+    "race": 32,
+    "fuse_able": false,
+    "level": 60
+  },
+  "296": {
+    "race": 32,
+    "fuse_able": true,
+    "level": 78,
+    "min_level": 138,
+    "max_level": 200
+  },
+  "261": {
+    "race": 32,
+    "fuse_able": true,
+    "level": 83,
+    "special_fusion": [
+      [
+        248,
+        564
+      ]
+    ]
+  },
+  "392": {
+    "race": 35,
+    "fuse_able": false,
+    "level": 40
+  },
+  "670": {
+    "race": 35,
+    "fuse_able": true,
+    "level": 50,
+    "special_fusion": [
+      [
+        118,
+        668
+      ]
+    ]
+  },
+  "650": {
+    "race": 35,
+    "fuse_able": true,
+    "level": 80,
+    "special_fusion": [
+      [
+        657,
+        206,
+        548
+      ],
+      [
+        613,
+        206,
+        548
+      ],
+      [
+        650,
+        206,
+        548
+      ]
+    ]
+  },
+  "374": {
+    "race": 35,
+    "fuse_able": false,
+    "level": 45
+  },
+  "566": {
+    "race": 35,
+    "fuse_able": true,
+    "level": 93,
+    "special_fusion": [
+      [
+        650,
+        631,
+        631
+      ]
+    ]
+  },
+  "242": {
+    "race": 35,
+    "fuse_able": true,
+    "level": 94,
+    "special_fusion": [
+      [
+        566,
+        631,
+        510
+      ]
+    ]
+  },
+  "478": {
+    "race": 35,
+    "fuse_able": true,
+    "level": 96,
+    "special_fusion": [
+      [
+        242,
+        657,
+        574
+      ],
+      [
+        199,
+        200,
+        198
+      ],
+      [
+        199,
+        200,
+        201
+      ],
+      [
+        199,
+        200,
+        202
+      ],
+      [
+        199,
+        201,
+        202
+      ]
+    ]
+  },
+  "583": {
+    "race": 35,
+    "fuse_able": true,
+    "level": 96,
+    "special_fusion": [
+      [
+        650,
+        566,
+        242
+      ]
+    ]
+  },
+  "98": {
+    "race": 35,
+    "fuse_able": false,
+    "level": 50
+  },
+  "47": {
+    "race": 35,
+    "fuse_able": true,
+    "level": 97,
+    "special_fusion": [
+      [
+        477,
+        481,
+        242
+      ]
+    ]
+  },
+  "477": {
+    "race": 35,
+    "fuse_able": true,
+    "level": 97,
+    "special_fusion": [
+      [
+        566,
+        631,
+        454
+      ]
+    ]
+  },
+  "532": {
+    "race": 37,
+    "fuse_able": false,
+    "level": 1
+  },
+  "88": {
+    "race": 37,
+    "fuse_able": true,
+    "level": 30,
+    "min_level": 0,
+    "max_level": 59
+  },
+  "152": {
+    "race": 37,
+    "fuse_able": false,
+    "level": 55
+  },
+  "268": {
+    "race": 37,
+    "fuse_able": true,
+    "level": 55,
+    "special_fusion": [
+      [
+        152,
+        262,
+        129
+      ]
+    ]
+  },
+  "572": {
+    "race": 37,
+    "fuse_able": false,
+    "level": 30
+  },
+  "386": {
+    "race": 37,
+    "fuse_able": false,
+    "level": 55
+  },
+  "623": {
+    "race": 37,
+    "fuse_able": true,
+    "level": 65,
+    "min_level": 60,
+    "max_level": 129
+  },
+  "352": {
+    "race": 37,
+    "fuse_able": false,
+    "level": 30
+  },
+  "480": {
+    "race": 37,
+    "fuse_able": true,
+    "level": 67,
+    "special_fusion": [
+      [
+        620,
+        579
+      ]
+    ]
+  },
+  "540": {
+    "race": 37,
+    "fuse_able": true,
+    "level": 82,
+    "min_level": 130,
+    "max_level": 200
+  },
+  "468": {
+    "race": 37,
+    "fuse_able": true,
+    "level": 83,
+    "special_fusion": [
+      [
+        506,
+        204
+      ]
+    ]
+  },
+  "360": {
+    "race": 37,
+    "fuse_able": false,
+    "level": 1
+  },
+  "506": {
+    "race": 37,
+    "fuse_able": true,
+    "level": 86,
+    "special_fusion": [
+      [
+        540,
+        677,
+        88
+      ]
+    ]
+  },
+  "574": {
+    "race": 37,
+    "fuse_able": true,
+    "level": 89,
+    "special_fusion": [
+      [
+        540,
+        650,
+        559
+      ]
+    ]
+  },
+  "585": {
+    "race": 37,
+    "fuse_able": true,
+    "level": 96,
+    "special_fusion": [
+      [
+        242,
+        128,
+        401
+      ]
+    ]
+  },
+  "329": {
+    "race": 38,
+    "fuse_able": true,
+    "level": 3,
+    "special_fusion": [
+      [
+        264,
+        327,
+        315
+      ]
+    ]
+  },
+  "17": {
+    "race": 38,
+    "fuse_able": false,
+    "level": 7
+  },
+  "264": {
+    "race": 38,
+    "fuse_able": true,
+    "level": 7,
+    "min_level": 0,
+    "max_level": 13
+  },
+  "23": {
+    "race": 38,
+    "fuse_able": false,
+    "level": 12
+  },
+  "467": {
+    "race": 38,
+    "fuse_able": true,
+    "level": 12,
+    "min_level": 14,
+    "max_level": 23
+  },
+  "177": {
+    "race": 38,
+    "fuse_able": false,
+    "level": 42
+  },
+  "274": {
+    "race": 38,
+    "fuse_able": true,
+    "level": 42,
+    "special_fusion": [
+      [
+        177,
+        641,
+        249
+      ]
+    ]
+  },
+  "362": {
+    "race": 38,
+    "fuse_able": true,
+    "level": 14,
+    "special_fusion": [
+      [
+        509,
+        335,
+        69
+      ]
+    ]
+  },
+  "29": {
+    "race": 38,
+    "fuse_able": false,
+    "level": 25
+  },
+  "509": {
+    "race": 38,
+    "fuse_able": true,
+    "level": 25,
+    "min_level": 24,
+    "max_level": 49
+  },
+  "595": {
+    "race": 38,
+    "fuse_able": false,
+    "level": 31
+  },
+  "313": {
+    "race": 38,
+    "fuse_able": true,
+    "level": 23,
+    "special_fusion": [
+      [
+        123,
+        496,
+        675
+      ]
+    ]
+  },
+  "6": {
+    "race": 38,
+    "fuse_able": false,
+    "level": 30
+  },
+  "123": {
+    "race": 38,
+    "fuse_able": true,
+    "level": 30,
+    "min_level": 50,
+    "max_level": 59
+  },
+  "593": {
+    "race": 38,
+    "fuse_able": false,
+    "level": 37
+  },
+  "305": {
+    "race": 38,
+    "fuse_able": true,
+    "level": 28,
+    "special_fusion": [
+      [
+        45,
+        344,
+        370
+      ]
+    ]
+  },
+  "2": {
+    "race": 38,
+    "fuse_able": false,
+    "level": 36
+  },
+  "45": {
+    "race": 38,
+    "fuse_able": true,
+    "level": 36,
+    "min_level": 60,
+    "max_level": 71
+  },
+  "592": {
+    "race": 38,
+    "fuse_able": false,
+    "level": 43
+  },
+  "84": {
+    "race": 38,
+    "fuse_able": true,
+    "level": 54,
+    "min_level": 72,
+    "max_level": 200
+  },
+  "535": {
+    "race": 38,
+    "fuse_able": false,
+    "level": 1
+  },
+  "354": {
+    "race": 38,
+    "fuse_able": false,
+    "level": 40
+  },
+  "486": {
+    "race": 38,
+    "fuse_able": true,
+    "level": 62,
+    "special_fusion": [
+      [
+        467,
+        84
+      ]
+    ]
+  },
+  "65": {
+    "race": 40,
+    "fuse_able": true,
+    "level": 8,
+    "min_level": 0,
+    "max_level": 15
+  },
+  "20": {
+    "race": 40,
+    "fuse_able": false,
+    "level": 14
+  },
+  "402": {
+    "race": 40,
+    "fuse_able": true,
+    "level": 14,
+    "min_level": 16,
+    "max_level": 27
+  },
+  "9": {
+    "race": 40,
+    "fuse_able": false,
+    "level": 23
+  },
+  "205": {
+    "race": 40,
+    "fuse_able": true,
+    "level": 23,
+    "min_level": 28,
+    "max_level": 45
+  },
+  "460": {
+    "race": 40,
+    "fuse_able": false,
+    "level": 32
+  },
+  "422": {
+    "race": 40,
+    "fuse_able": true,
+    "level": 28,
+    "min_level": 46,
+    "max_level": 55
+  },
+  "519": {
+    "race": 40,
+    "fuse_able": true,
+    "level": 37,
+    "min_level": 56,
+    "max_level": 73
+  },
+  "209": {
+    "race": 40,
+    "fuse_able": true,
+    "level": 42,
+    "special_fusion": [
+      [
+        557,
+        408
+      ]
+    ]
+  },
+  "408": {
+    "race": 40,
+    "fuse_able": true,
+    "level": 44,
+    "min_level": 74,
+    "max_level": 87
+  },
+  "556": {
+    "race": 40,
+    "fuse_able": true,
+    "level": 56,
+    "special_fusion": [
+      [
+        245,
+        563
+      ]
+    ]
+  },
+  "245": {
+    "race": 40,
+    "fuse_able": true,
+    "level": 58,
+    "min_level": 88,
+    "max_level": 200
+  },
+  "599": {
+    "race": 3,
+    "fuse_able": false,
+    "level": 1
+  },
+  "312": {
+    "race": 3,
+    "fuse_able": true,
+    "level": 2,
+    "special_fusion": [
+      [
+        120,
+        383,
+        381
+      ]
+    ]
+  },
+  "120": {
+    "race": 3,
+    "fuse_able": true,
+    "level": 7,
+    "min_level": 0,
+    "max_level": 13
+  },
+  "155": {
+    "race": 3,
+    "fuse_able": false,
+    "level": 33
+  },
+  "269": {
+    "race": 3,
+    "fuse_able": true,
+    "level": 33,
+    "special_fusion": [
+      [
+        520,
+        155,
+        547
+      ]
+    ]
+  },
+  "317": {
+    "race": 3,
+    "fuse_able": true,
+    "level": 6,
+    "special_fusion": [
+      [
+        331,
+        142,
+        326
+      ]
+    ]
+  },
+  "142": {
+    "race": 3,
+    "fuse_able": true,
+    "level": 13,
+    "min_level": 14,
+    "max_level": 25
+  },
+  "334": {
+    "race": 3,
+    "fuse_able": true,
+    "level": 10,
+    "special_fusion": [
+      [
+        322,
+        399,
+        379
+      ]
+    ]
+  },
+  "399": {
+    "race": 3,
+    "fuse_able": true,
+    "level": 18,
+    "min_level": 26,
+    "max_level": 35
+  },
+  "479": {
+    "race": 3,
+    "fuse_able": false,
+    "level": 27
+  },
+  "27": {
+    "race": 3,
+    "fuse_able": false,
+    "level": 26
+  },
+  "357": {
+    "race": 3,
+    "fuse_able": true,
+    "level": 26,
+    "special_fusion": [
+      [
+        496,
+        313,
+        395
+      ]
+    ]
+  },
+  "496": {
+    "race": 3,
+    "fuse_able": true,
+    "level": 26,
+    "min_level": 36,
+    "max_level": 51
+  },
+  "462": {
+    "race": 3,
+    "fuse_able": false,
+    "level": 52
+  },
+  "522": {
+    "race": 3,
+    "fuse_able": true,
+    "level": 31,
+    "min_level": 52,
+    "max_level": 61
+  },
+  "181": {
+    "race": 3,
+    "fuse_able": false,
+    "level": 65
+  },
+  "637": {
+    "race": 3,
+    "fuse_able": false,
+    "level": 71
+  },
+  "622": {
+    "race": 3,
+    "fuse_able": true,
+    "level": 37,
+    "min_level": 62,
+    "max_level": 73
+  },
+  "638": {
+    "race": 3,
+    "fuse_able": false,
+    "level": 67
+  },
+  "191": {
+    "race": 3,
+    "fuse_able": false,
+    "level": 78
+  },
+  "134": {
+    "race": 3,
+    "fuse_able": false,
+    "level": 42
+  },
+  "148": {
+    "race": 3,
+    "fuse_able": true,
+    "level": 42,
+    "min_level": 74,
+    "max_level": 83
+  },
+  "314": {
+    "race": 3,
+    "fuse_able": false,
+    "level": 30
+  },
+  "124": {
+    "race": 3,
+    "fuse_able": true,
+    "level": 49,
+    "min_level": 84,
+    "max_level": 200
+  },
+  "635": {
+    "race": 3,
+    "fuse_able": false,
+    "level": 69
+  },
+  "157": {
+    "race": 3,
+    "fuse_able": false,
+    "level": 70
+  },
+  "630": {
+    "race": 3,
+    "fuse_able": false,
+    "level": 49
+  },
+  "77": {
+    "race": 3,
+    "fuse_able": true,
+    "level": 70,
+    "special_fusion": [
+      [
+        124,
+        522,
+        128
+      ],
+      [
+        630,
+        522,
+        128
+      ],
+      [
+        660,
+        522,
+        128
+      ]
+    ]
+  },
+  "660": {
+    "race": 3,
+    "fuse_able": true,
+    "level": 70,
+    "special_fusion": [
+      [
+        501,
+        409,
+        410
+      ],
+      [
+        501,
+        500,
+        552
+      ],
+      [
+        501,
+        669,
+        552
+      ],
+      [
+        501,
+        500,
+        410
+      ],
+      [
+        630,
+        669,
+        552
+      ]
+    ]
+  },
+  "259": {
+    "race": 3,
+    "fuse_able": true,
+    "level": 74,
+    "special_fusion": [
+      [
+        63,
+        631
+      ]
+    ]
+  },
+  "377": {
+    "race": 5,
+    "fuse_able": false,
+    "level": 1
+  },
+  "584": {
+    "race": 5,
+    "fuse_able": true,
+    "level": 28,
+    "min_level": 0,
+    "max_level": 55
+  },
+  "654": {
+    "race": 5,
+    "fuse_able": true,
+    "level": 36,
+    "min_level": 56,
+    "max_level": 71
+  },
+  "465": {
+    "race": 5,
+    "fuse_able": false,
+    "level": 55
+  },
+  "216": {
+    "race": 5,
+    "fuse_able": false,
+    "level": 1
+  },
+  "316": {
+    "race": 5,
+    "fuse_able": false,
+    "level": 24
+  },
+  "501": {
+    "race": 5,
+    "fuse_able": false,
+    "level": 30
+  },
+  "140": {
+    "race": 5,
+    "fuse_able": true,
+    "level": 44,
+    "min_level": 72,
+    "max_level": 87
+  },
+  "198": {
+    "race": 5,
+    "fuse_able": false,
+    "level": 44
+  },
+  "141": {
+    "race": 5,
+    "fuse_able": false,
+    "level": 44
+  },
+  "285": {
+    "race": 5,
+    "fuse_able": true,
+    "level": 70,
+    "special_fusion": [
+      [
+        584,
+        247,
+        141
+      ]
+    ]
+  },
+  "239": {
+    "race": 5,
+    "fuse_able": true,
+    "level": 46,
+    "special_fusion": [
+      [
+        403,
+        621
+      ]
+    ]
+  },
+  "433": {
+    "race": 5,
+    "fuse_able": true,
+    "level": 48,
+    "min_level": 88,
+    "max_level": 95
+  },
+  "502": {
+    "race": 5,
+    "fuse_able": true,
+    "level": 70,
+    "special_fusion": [
+      [
+        433,
+        680,
+        590
+      ]
+    ]
+  },
+  "174": {
+    "race": 5,
+    "fuse_able": false,
+    "level": 80
+  },
+  "267": {
+    "race": 5,
+    "fuse_able": true,
+    "level": 57,
+    "min_level": 96,
+    "max_level": 200
+  },
+  "168": {
+    "race": 5,
+    "fuse_able": false,
+    "level": 77
+  },
+  "345": {
+    "race": 5,
+    "fuse_able": false,
+    "level": 30
+  },
+  "430": {
+    "race": 5,
+    "fuse_able": true,
+    "level": 67,
+    "special_fusion": [
+      [
+        140,
+        648
+      ]
+    ]
+  },
+  "263": {
+    "race": 5,
+    "fuse_able": true,
+    "level": 71,
+    "special_fusion": [
+      [
+        267,
+        248,
+        519
+      ]
+    ]
+  },
+  "167": {
+    "race": 5,
+    "fuse_able": false,
+    "level": 80
+  },
+  "358": {
+    "race": 10,
+    "fuse_able": false,
+    "level": 1
+  },
+  "664": {
+    "race": 10,
+    "fuse_able": false,
+    "level": 1
+  },
+  "504": {
+    "race": 10,
+    "fuse_able": true,
+    "level": 14,
+    "min_level": 0,
+    "max_level": 27
+  },
+  "636": {
+    "race": 10,
+    "fuse_able": false,
+    "level": 64
+  },
+  "356": {
+    "race": 10,
+    "fuse_able": false,
+    "level": 18
+  },
+  "26": {
+    "race": 10,
+    "fuse_able": false,
+    "level": 24
+  },
+  "493": {
+    "race": 10,
+    "fuse_able": true,
+    "level": 24,
+    "min_level": 28,
+    "max_level": 47
+  },
+  "482": {
+    "race": 10,
+    "fuse_able": true,
+    "level": 31,
+    "min_level": 48,
+    "max_level": 61
+  },
+  "24": {
+    "race": 10,
+    "fuse_able": false,
+    "level": 42
+  },
+  "563": {
+    "race": 10,
+    "fuse_able": true,
+    "level": 40,
+    "min_level": 62,
+    "max_level": 79
+  },
+  "661": {
+    "race": 10,
+    "fuse_able": true,
+    "level": 48,
+    "min_level": 80,
+    "max_level": 200
+  },
+  "662": {
+    "race": 10,
+    "fuse_able": false,
+    "level": 56
+  },
+  "676": {
+    "race": 10,
+    "fuse_able": true,
+    "level": 75,
+    "special_fusion": [
+      [
+        560,
+        497,
+        563
+      ]
+    ]
+  },
+  "683": {
+    "race": 10,
+    "fuse_able": true,
+    "level": 81,
+    "special_fusion": [
+      [
+        482,
+        560
+      ]
+    ]
+  },
+  "215": {
+    "race": 13,
+    "fuse_able": true,
+    "level": 7,
+    "racial_fusion": [
+      [
+        4,
+        4
+      ],
+      [
+        12,
+        12
+      ],
+      [
+        11,
+        11
+      ],
+      [
+        19,
+        19
+      ],
+      [
+        30,
+        30
+      ],
+      [
+        31,
+        31
+      ]
+    ]
+  },
+  "46": {
+    "race": 13,
+    "fuse_able": true,
+    "level": 11,
+    "racial_fusion": [
+      [
+        2,
+        2
+      ],
+      [
+        3,
+        3
+      ],
+      [
+        8,
+        8
+      ],
+      [
+        18,
+        18
+      ],
+      [
+        38,
+        38
+      ],
+      [
+        39,
+        39
+      ]
+    ]
+  },
+  "66": {
+    "race": 13,
+    "fuse_able": true,
+    "level": 15,
+    "racial_fusion": [
+      [
+        9,
+        9
+      ],
+      [
+        10,
+        10
+      ],
+      [
+        20,
+        20
+      ],
+      [
+        28,
+        28
+      ],
+      [
+        40,
+        40
+      ]
+    ]
+  },
+  "231": {
+    "race": 13,
+    "fuse_able": true,
+    "level": 15,
+    "racial_fusion": [
+      [
+        25,
+        25
+      ],
+      [
+        29,
+        29
+      ]
+    ]
+  },
+  "570": {
+    "race": 18,
+    "fuse_able": false,
+    "level": 1
+  },
+  "665": {
+    "race": 18,
+    "fuse_able": false,
+    "level": 1
+  },
+  "104": {
+    "race": 18,
+    "fuse_able": false,
+    "level": 1
+  },
+  "255": {
+    "race": 18,
+    "fuse_able": true,
+    "level": 1,
+    "special_fusion": [
+      [
+        570,
+        665,
+        104
+      ]
+    ]
+  },
+  "367": {
+    "race": 18,
+    "fuse_able": false,
+    "level": 1
+  },
+  "463": {
+    "race": 18,
+    "fuse_able": false,
+    "level": 1
+  },
+  "605": {
+    "race": 18,
+    "fuse_able": false,
+    "level": 1
+  },
+  "201": {
+    "race": 18,
+    "fuse_able": false,
+    "level": 2
+  },
+  "424": {
+    "race": 18,
+    "fuse_able": false,
+    "level": 2
+  },
+  "545": {
+    "race": 18,
+    "fuse_able": true,
+    "level": 2,
+    "min_level": 0,
+    "max_level": 3
+  },
+  "446": {
+    "race": 18,
+    "fuse_able": false,
+    "level": 3
+  },
+  "110": {
+    "race": 18,
+    "fuse_able": false,
+    "level": 1
+  },
+  "335": {
+    "race": 18,
+    "fuse_able": true,
+    "level": 4,
+    "special_fusion": [
+      [
+        403,
+        362,
+        69
+      ]
+    ]
+  },
+  "606": {
+    "race": 18,
+    "fuse_able": false,
+    "level": 4
+  },
+  "403": {
+    "race": 18,
+    "fuse_able": true,
+    "level": 11,
+    "min_level": 4,
+    "max_level": 21
+  },
+  "562": {
+    "race": 18,
+    "fuse_able": false,
+    "level": 11
+  },
+  "169": {
+    "race": 18,
+    "fuse_able": false,
+    "level": 51
+  },
+  "273": {
+    "race": 18,
+    "fuse_able": true,
+    "level": 51,
+    "special_fusion": [
+      [
+        647,
+        169,
+        602
+      ]
+    ]
+  },
+  "597": {
+    "race": 18,
+    "fuse_able": false,
+    "level": 11
+  },
+  "380": {
+    "race": 18,
+    "fuse_able": false,
+    "level": 11
+  },
+  "576": {
+    "race": 18,
+    "fuse_able": false,
+    "level": 11
+  },
+  "18": {
+    "race": 18,
+    "fuse_able": false,
+    "level": 15
+  },
+  "114": {
+    "race": 18,
+    "fuse_able": false,
+    "level": 11
+  },
+  "113": {
+    "race": 18,
+    "fuse_able": false,
+    "level": 11
+  },
+  "286": {
+    "race": 18,
+    "fuse_able": true,
+    "level": 15,
+    "min_level": 22,
+    "max_level": 29
+  },
+  "577": {
+    "race": 18,
+    "fuse_able": false,
+    "level": 15
+  },
+  "398": {
+    "race": 18,
+    "fuse_able": false,
+    "level": 1
+  },
+  "370": {
+    "race": 18,
+    "fuse_able": true,
+    "level": 17,
+    "special_fusion": [
+      [
+        557,
+        344,
+        305
+      ]
+    ]
+  },
+  "36": {
+    "race": 18,
+    "fuse_able": false,
+    "level": 20
+  },
+  "557": {
+    "race": 18,
+    "fuse_able": true,
+    "level": 20,
+    "min_level": 30,
+    "max_level": 39
+  },
+  "186": {
+    "race": 18,
+    "fuse_able": false,
+    "level": 55
+  },
+  "244": {
+    "race": 18,
+    "fuse_able": true,
+    "level": 23,
+    "min_level": 40,
+    "max_level": 45
+  },
+  "21": {
+    "race": 18,
+    "fuse_able": false,
+    "level": 25
+  },
+  "416": {
+    "race": 18,
+    "fuse_able": true,
+    "level": 25,
+    "min_level": 46,
+    "max_level": 49
+  },
+  "321": {
+    "race": 18,
+    "fuse_able": false,
+    "level": 16
+  },
+  "212": {
+    "race": 18,
+    "fuse_able": true,
+    "level": 31,
+    "min_level": 50,
+    "max_level": 61
+  },
+  "641": {
+    "race": 18,
+    "fuse_able": true,
+    "level": 38,
+    "min_level": 62,
+    "max_level": 75
+  },
+  "194": {
+    "race": 18,
+    "fuse_able": false,
+    "level": 48
+  },
+  "278": {
+    "race": 18,
+    "fuse_able": true,
+    "level": 48,
+    "special_fusion": [
+      [
+        467,
+        194,
+        249
+      ]
+    ]
+  },
+  "385": {
+    "race": 18,
+    "fuse_able": false,
+    "level": 20
+  },
+  "621": {
+    "race": 18,
+    "fuse_able": true,
+    "level": 42,
+    "min_level": 76,
+    "max_level": 83
+  },
+  "659": {
+    "race": 18,
+    "fuse_able": true,
+    "level": 47,
+    "min_level": 84,
+    "max_level": 93
+  },
+  "221": {
+    "race": 18,
+    "fuse_able": false,
+    "level": 1
+  },
+  "361": {
+    "race": 18,
+    "fuse_able": true,
+    "level": 36,
+    "special_fusion": [
+      [
+        508,
+        320,
+        560
+      ]
+    ]
+  },
+  "28": {
+    "race": 18,
+    "fuse_able": false,
+    "level": 52
+  },
+  "508": {
+    "race": 18,
+    "fuse_able": true,
+    "level": 52,
+    "min_level": 94,
+    "max_level": 103
+  },
+  "210": {
+    "race": 18,
+    "fuse_able": false,
+    "level": 1
+  },
+  "102": {
+    "race": 18,
+    "fuse_able": false,
+    "level": 30
+  },
+  "390": {
+    "race": 18,
+    "fuse_able": true,
+    "level": 38,
+    "special_fusion": [
+      [
+        633,
+        677,
+        530
+      ]
+    ]
+  },
+  "202": {
+    "race": 18,
+    "fuse_able": false,
+    "level": 57
+  },
+  "464": {
+    "race": 18,
+    "fuse_able": false,
+    "level": 57
+  },
+  "633": {
+    "race": 18,
+    "fuse_able": true,
+    "level": 57,
+    "min_level": 104,
+    "max_level": 200
+  },
+  "612": {
+    "race": 18,
+    "fuse_able": true,
+    "level": 75,
+    "special_fusion": [
+      [
+        605,
+        18
+      ]
+    ]
+  },
+  "351": {
+    "race": 21,
+    "fuse_able": false,
+    "level": 30
+  },
+  "476": {
+    "race": 21,
+    "fuse_able": true,
+    "level": 30,
+    "special_fusion": [
+      [
+        250,
+        50,
+        453
+      ]
+    ]
+  },
+  "251": {
+    "race": 21,
+    "fuse_able": true,
+    "level": 50,
+    "special_fusion": [
+      [
+        118,
+        492
+      ],
+      [
+        118,
+        469
+      ],
+      [
+        116,
+        115
+      ],
+      [
+        116,
+        469
+      ],
+      [
+        668,
+        117
+      ],
+      [
+        668,
+        115
+      ]
+    ]
+  },
+  "112": {
+    "race": 21,
+    "fuse_able": true,
+    "level": 70,
+    "special_fusion": [
+      [
+        476,
+        260,
+        140
+      ]
+    ]
+  },
+  "409": {
+    "race": 21,
+    "fuse_able": false,
+    "level": 1
+  },
+  "500": {
+    "race": 21,
+    "fuse_able": false,
+    "level": 20
+  },
+  "50": {
+    "race": 21,
+    "fuse_able": true,
+    "level": 35,
+    "special_fusion": [
+      [
+        426,
+        449,
+        545
+      ]
+    ]
+  },
+  "669": {
+    "race": 21,
+    "fuse_able": true,
+    "level": 50,
+    "special_fusion": [
+      [
+        115,
+        492
+      ],
+      [
+        469,
+        492
+      ]
+    ]
+  },
+  "498": {
+    "race": 21,
+    "fuse_able": true,
+    "level": 70,
+    "special_fusion": [
+      [
+        50,
+        669,
+        500
+      ],
+      [
+        50,
+        669,
+        409
+      ],
+      [
+        669,
+        500,
+        409
+      ]
+    ]
+  },
+  "553": {
+    "race": 21,
+    "fuse_able": true,
+    "level": 70,
+    "special_fusion": [
+      [
+        50,
+        44,
+        105
+      ]
+    ]
+  },
+  "147": {
+    "race": 21,
+    "fuse_able": true,
+    "level": 37,
+    "special_fusion": [
+      [
+        644,
+        125,
+        476
+      ]
+    ]
+  },
+  "284": {
+    "race": 21,
+    "fuse_able": true,
+    "level": 46,
+    "special_fusion": [
+      [
+        250,
+        50,
+        476
+      ]
+    ]
+  },
+  "405": {
+    "race": 21,
+    "fuse_able": true,
+    "level": 50,
+    "special_fusion": [
+      [
+        116,
+        492
+      ],
+      [
+        668,
+        469
+      ],
+      [
+        668,
+        492
+      ],
+      [
+        117,
+        115
+      ],
+      [
+        117,
+        469
+      ]
+    ]
+  },
+  "109": {
+    "race": 21,
+    "fuse_able": true,
+    "level": 70,
+    "special_fusion": [
+      [
+        284,
+        408,
+        96
+      ]
+    ]
+  },
+  "666": {
+    "race": 21,
+    "fuse_able": true,
+    "level": 52,
+    "special_fusion": [
+      [
+        657,
+        476,
+        686
+      ],
+      [
+        137,
+        133
+      ]
+    ]
+  },
+  "144": {
+    "race": 21,
+    "fuse_able": true,
+    "level": 55,
+    "special_fusion": [
+      [
+        25,
+        476,
+        677
+      ],
+      [
+        138,
+        133
+      ]
+    ]
+  },
+  "571": {
+    "race": 21,
+    "fuse_able": true,
+    "level": 58,
+    "special_fusion": [
+      [
+        548,
+        666,
+        429
+      ],
+      [
+        135,
+        134
+      ]
+    ]
+  },
+  "108": {
+    "race": 21,
+    "fuse_able": true,
+    "level": 65,
+    "special_fusion": [
+      [
+        448,
+        571,
+        407
+      ],
+      [
+        136,
+        138
+      ]
+    ]
+  },
+  "471": {
+    "race": 21,
+    "fuse_able": false,
+    "level": 65
+  },
+  "512": {
+    "race": 21,
+    "fuse_able": true,
+    "level": 70,
+    "special_fusion": [
+      [
+        625,
+        58,
+        542
+      ]
+    ]
+  },
+  "528": {
+    "race": 21,
+    "fuse_able": true,
+    "level": 74,
+    "special_fusion": [
+      [
+        453,
+        108,
+        99
+      ],
+      [
+        136,
+        135,
+        133
+      ]
+    ]
+  },
+  "615": {
+    "race": 21,
+    "fuse_able": false,
+    "level": 30
+  },
+  "406": {
+    "race": 21,
+    "fuse_able": true,
+    "level": 75,
+    "special_fusion": [
+      [
+        284,
+        50,
+        654
+      ],
+      [
+        200,
+        201,
+        202
+      ],
+      [
+        198,
+        201,
+        202
+      ],
+      [
+        198,
+        201,
+        200
+      ],
+      [
+        198,
+        202,
+        200
+      ]
+    ]
+  },
+  "230": {
+    "race": 21,
+    "fuse_able": true,
+    "level": 70,
+    "special_fusion": [
+      [
+        445,
+        552,
+        669
+      ]
+    ]
+  },
+  "634": {
+    "race": 21,
+    "fuse_able": true,
+    "level": 83,
+    "special_fusion": [
+      [
+        284,
+        476,
+        487
+      ],
+      [
+        136,
+        137
+      ]
+    ]
+  },
+  "588": {
+    "race": 21,
+    "fuse_able": false,
+    "level": 10
+  },
+  "254": {
+    "race": 21,
+    "fuse_able": true,
+    "level": 30,
+    "special_fusion": [
+      [
+        588,
+        427
+      ]
+    ]
+  },
+  "681": {
+    "race": 21,
+    "fuse_able": true,
+    "level": 50,
+    "special_fusion": [
+      [
+        254,
+        414
+      ]
+    ]
+  },
+  "265": {
+    "race": 21,
+    "fuse_able": true,
+    "level": 70,
+    "special_fusion": [
+      [
+        681,
+        433
+      ]
+    ]
+  },
+  "680": {
+    "race": 21,
+    "fuse_able": true,
+    "level": 87,
+    "special_fusion": [
+      [
+        634,
+        144
+      ],
+      [
+        138,
+        134,
+        137
+      ]
+    ]
+  },
+  "475": {
+    "race": 21,
+    "fuse_able": true,
+    "level": 90,
+    "special_fusion": [
+      [
+        144,
+        586
+      ],
+      [
+        55,
+        100
+      ]
+    ]
+  },
+  "642": {
+    "race": 21,
+    "fuse_able": true,
+    "level": 91,
+    "special_fusion": [
+      [
+        108,
+        571,
+        528
+      ]
+    ]
+  },
+  "488": {
+    "race": 21,
+    "fuse_able": true,
+    "level": 93,
+    "special_fusion": [
+      [
+        642,
+        528,
+        284
+      ]
+    ]
+  },
+  "350": {
+    "race": 25,
+    "fuse_able": false,
+    "level": 12
+  },
+  "470": {
+    "race": 25,
+    "fuse_able": true,
+    "level": 22,
+    "min_level": 0,
+    "max_level": 43
+  },
+  "178": {
+    "race": 25,
+    "fuse_able": false,
+    "level": 74
+  },
+  "337": {
+    "race": 25,
+    "fuse_able": false,
+    "level": 25
+  },
+  "411": {
+    "race": 25,
+    "fuse_able": true,
+    "level": 31,
+    "min_level": 44,
+    "max_level": 61
+  },
+  "170": {
+    "race": 25,
+    "fuse_able": false,
+    "level": 60
+  },
+  "494": {
+    "race": 25,
+    "fuse_able": true,
+    "level": 44,
+    "min_level": 62,
+    "max_level": 87
+  },
+  "495": {
+    "race": 25,
+    "fuse_able": true,
+    "level": 61,
+    "min_level": 88,
+    "max_level": 200
+  },
+  "604": {
+    "race": 25,
+    "fuse_able": true,
+    "level": 66,
+    "special_fusion": [
+      [
+        266,
+        128
+      ]
+    ]
+  },
+  "393": {
+    "race": 25,
+    "fuse_able": false,
+    "level": 1
+  },
+  "672": {
+    "race": 25,
+    "fuse_able": true,
+    "level": 71,
+    "special_fusion": [
+      [
+        191,
+        504,
+        24
+      ]
+    ]
+  },
+  "62": {
+    "race": 25,
+    "fuse_able": true,
+    "level": 74,
+    "special_fusion": [
+      [
+        629,
+        495
+      ]
+    ]
+  },
+  "89": {
+    "race": 25,
+    "fuse_able": true,
+    "level": 85,
+    "special_fusion": [
+      [
+        589,
+        622,
+        481
+      ]
+    ]
+  },
+  "589": {
+    "race": 29,
+    "fuse_able": true,
+    "level": 13,
+    "min_level": 0,
+    "max_level": 25
+  },
+  "378": {
+    "race": 29,
+    "fuse_able": false,
+    "level": 15
+  },
+  "211": {
+    "race": 29,
+    "fuse_able": false,
+    "level": 1
+  },
+  "391": {
+    "race": 29,
+    "fuse_able": true,
+    "level": 15,
+    "special_fusion": [
+      [
+        648,
+        554,
+        547
+      ]
+    ]
+  },
+  "648": {
+    "race": 29,
+    "fuse_able": true,
+    "level": 21,
+    "min_level": 26,
+    "max_level": 41
+  },
+  "64": {
+    "race": 29,
+    "fuse_able": true,
+    "level": 24,
+    "min_level": 42,
+    "max_level": 47
+  },
+  "150": {
+    "race": 29,
+    "fuse_able": false,
+    "level": 79
+  },
+  "310": {
+    "race": 29,
+    "fuse_able": true,
+    "level": 23,
+    "special_fusion": [
+      [
+        306,
+        87,
+        319
+      ]
+    ]
+  },
+  "87": {
+    "race": 29,
+    "fuse_able": true,
+    "level": 27,
+    "min_level": 48,
+    "max_level": 53
+  },
+  "527": {
+    "race": 29,
+    "fuse_able": true,
+    "level": 31,
+    "min_level": 54,
+    "max_level": 61
+  },
+  "550": {
+    "race": 29,
+    "fuse_able": false,
+    "level": 92
+  },
+  "538": {
+    "race": 29,
+    "fuse_able": false,
+    "level": 1
+  },
+  "582": {
+    "race": 29,
+    "fuse_able": true,
+    "level": 36,
+    "min_level": 62,
+    "max_level": 71
+  },
+  "343": {
+    "race": 29,
+    "fuse_able": false,
+    "level": 29
+  },
+  "423": {
+    "race": 29,
+    "fuse_able": true,
+    "level": 41,
+    "min_level": 72,
+    "max_level": 81
+  },
+  "172": {
+    "race": 29,
+    "fuse_able": false,
+    "level": 70
+  },
+  "128": {
+    "race": 29,
+    "fuse_able": true,
+    "level": 55,
+    "special_fusion": [
+      [
+        263,
+        558
+      ],
+      [
+        611,
+        206
+      ]
+    ]
+  },
+  "601": {
+    "race": 29,
+    "fuse_able": true,
+    "level": 62,
+    "min_level": 82,
+    "max_level": 200
+  },
+  "188": {
+    "race": 29,
+    "fuse_able": false,
+    "level": 78
+  },
+  "309": {
+    "race": 29,
+    "fuse_able": false,
+    "level": 1
+  },
+  "85": {
+    "race": 29,
+    "fuse_able": true,
+    "level": 69,
+    "special_fusion": [
+      [
+        582,
+        645,
+        581
+      ]
+    ]
+  },
+  "3": {
+    "race": 31,
+    "fuse_able": false,
+    "level": 1
+  },
+  "663": {
+    "race": 31,
+    "fuse_able": true,
+    "level": 6,
+    "special_fusion": [
+      [
+        327,
+        664
+      ]
+    ]
+  },
+  "52": {
+    "race": 31,
+    "fuse_able": true,
+    "level": 8,
+    "min_level": 0,
+    "max_level": 15
+  },
+  "11": {
+    "race": 31,
+    "fuse_able": false,
+    "level": 14
+  },
+  "214": {
+    "race": 31,
+    "fuse_able": true,
+    "level": 14,
+    "min_level": 16,
+    "max_level": 27
+  },
+  "348": {
+    "race": 31,
+    "fuse_able": false,
+    "level": 11
+  },
+  "449": {
+    "race": 31,
+    "fuse_able": true,
+    "level": 20,
+    "min_level": 28,
+    "max_level": 39
+  },
+  "549": {
+    "race": 31,
+    "fuse_able": false,
+    "level": 92
+  },
+  "450": {
+    "race": 31,
+    "fuse_able": true,
+    "level": 20,
+    "special_fusion": [
+      [
+        449,
+        52
+      ]
+    ]
+  },
+  "325": {
+    "race": 31,
+    "fuse_able": true,
+    "level": 20,
+    "special_fusion": [
+      [
+        330,
+        235,
+        339
+      ]
+    ]
+  },
+  "12": {
+    "race": 31,
+    "fuse_able": false,
+    "level": 27
+  },
+  "235": {
+    "race": 31,
+    "fuse_able": true,
+    "level": 27,
+    "min_level": 40,
+    "max_level": 53
+  },
+  "302": {
+    "race": 31,
+    "fuse_able": true,
+    "level": 31,
+    "min_level": 54,
+    "max_level": 61
+  },
+  "539": {
+    "race": 31,
+    "fuse_able": false,
+    "level": 1
+  },
+  "382": {
+    "race": 31,
+    "fuse_able": false,
+    "level": 20
+  },
+  "607": {
+    "race": 31,
+    "fuse_able": true,
+    "level": 37,
+    "min_level": 62,
+    "max_level": 73
+  },
+  "105": {
+    "race": 31,
+    "fuse_able": true,
+    "level": 42,
+    "special_fusion": [
+      [
+        403,
+        557,
+        88
+      ]
+    ]
+  },
+  "575": {
+    "race": 31,
+    "fuse_able": false,
+    "level": 42
+  },
+  "410": {
+    "race": 31,
+    "fuse_able": false,
+    "level": 45
+  },
+  "552": {
+    "race": 31,
+    "fuse_able": true,
+    "level": 50,
+    "special_fusion": [
+      [
+        117,
+        492
+      ],
+      [
+        115,
+        469
+      ]
+    ]
+  },
+  "139": {
+    "race": 31,
+    "fuse_able": true,
+    "level": 70,
+    "special_fusion": [
+      [
+        552,
+        410,
+        669
+      ],
+      [
+        552,
+        410,
+        501
+      ],
+      [
+        552,
+        410,
+        500
+      ]
+    ]
+  },
+  "412": {
+    "race": 31,
+    "fuse_able": true,
+    "level": 47,
+    "min_level": 74,
+    "max_level": 93
+  },
+  "349": {
+    "race": 31,
+    "fuse_able": false,
+    "level": 40
+  },
+  "135": {
+    "race": 31,
+    "fuse_able": false,
+    "level": 52
+  },
+  "453": {
+    "race": 31,
+    "fuse_able": true,
+    "level": 52,
+    "min_level": 94,
+    "max_level": 103
+  },
+  "372": {
+    "race": 31,
+    "fuse_able": false,
+    "level": 30
+  },
+  "559": {
+    "race": 31,
+    "fuse_able": true,
+    "level": 57,
+    "min_level": 104,
+    "max_level": 200
+  },
+  "568": {
+    "race": 31,
+    "fuse_able": false,
+    "level": 30
+  },
+  "507": {
+    "race": 31,
+    "fuse_able": true,
+    "level": 72,
+    "special_fusion": [
+      [
+        503,
+        607,
+        280
+      ]
+    ]
+  },
+  "534": {
+    "race": 31,
+    "fuse_able": false,
+    "level": 1
+  },
+  "452": {
+    "race": 31,
+    "fuse_able": false,
+    "level": 90
+  },
+  "451": {
+    "race": 31,
+    "fuse_able": true,
+    "level": 92,
+    "special_fusion": [
+      [
+        656,
+        607,
+        449
+      ]
+    ]
+  },
+  "282": {
+    "race": 33,
+    "fuse_able": true,
+    "level": 46,
+    "min_level": 0,
+    "max_level": 91
+  },
+  "541": {
+    "race": 33,
+    "fuse_able": true,
+    "level": 55,
+    "special_fusion": [
+      [
+        282,
+        74
+      ]
+    ]
+  },
+  "126": {
+    "race": 33,
+    "fuse_able": true,
+    "level": 62,
+    "min_level": 92,
+    "max_level": 200
+  },
+  "260": {
+    "race": 33,
+    "fuse_able": true,
+    "level": 69,
+    "special_fusion": [
+      [
+        453,
+        88
+      ]
+    ]
+  },
+  "301": {
+    "race": 33,
+    "fuse_able": false,
+    "level": 1
+  },
+  "445": {
+    "race": 33,
+    "fuse_able": true,
+    "level": 50,
+    "special_fusion": [
+      [
+        118,
+        117
+      ],
+      [
+        118,
+        115
+      ],
+      [
+        116,
+        117
+      ],
+      [
+        668,
+        116
+      ]
+    ]
+  },
+  "487": {
+    "race": 33,
+    "fuse_able": true,
+    "level": 85,
+    "special_fusion": [
+      [
+        510,
+        126,
+        282
+      ],
+      [
+        510,
+        126,
+        301
+      ]
+    ]
+  },
+  "93": {
+    "race": 33,
+    "fuse_able": true,
+    "level": 93,
+    "special_fusion": [
+      [
+        487,
+        126,
+        282
+      ]
+    ]
+  },
+  "586": {
+    "race": 33,
+    "fuse_able": true,
+    "level": 93,
+    "special_fusion": [
+      [
+        93,
+        558
+      ]
+    ]
+  },
+  "67": {
+    "race": 34,
+    "fuse_able": true,
+    "level": 15,
+    "special_fusion": [
+      [
+        215,
+        66
+      ],
+      [
+        46,
+        231
+      ]
+    ]
+  },
+  "499": {
+    "race": 34,
+    "fuse_able": true,
+    "level": 19,
+    "special_fusion": [
+      [
+        215,
+        46
+      ]
+    ]
+  },
+  "435": {
+    "race": 34,
+    "fuse_able": true,
+    "level": 22,
+    "special_fusion": [
+      [
+        46,
+        66
+      ],
+      [
+        231,
+        215
+      ]
+    ]
+  },
+  "573": {
+    "race": 34,
+    "fuse_able": true,
+    "level": 25,
+    "special_fusion": [
+      [
+        66,
+        231
+      ]
+    ]
+  },
+  "327": {
+    "race": 39,
+    "fuse_able": true,
+    "level": 3,
+    "special_fusion": [
+      [
+        247,
+        329,
+        315
+      ]
+    ]
+  },
+  "14": {
+    "race": 39,
+    "fuse_able": false,
+    "level": 9
+  },
+  "247": {
+    "race": 39,
+    "fuse_able": true,
+    "level": 9,
+    "min_level": 0,
+    "max_level": 17
+  },
+  "163": {
+    "race": 39,
+    "fuse_able": false,
+    "level": 76
+  },
+  "311": {
+    "race": 39,
+    "fuse_able": false,
+    "level": 12
+  },
+  "5": {
+    "race": 39,
+    "fuse_able": false,
+    "level": 17
+  },
+  "96": {
+    "race": 39,
+    "fuse_able": true,
+    "level": 17,
+    "min_level": 18,
+    "max_level": 33
+  },
+  "153": {
+    "race": 39,
+    "fuse_able": false,
+    "level": 52
+  },
+  "328": {
+    "race": 39,
+    "fuse_able": false,
+    "level": 14
+  },
+  "16": {
+    "race": 39,
+    "fuse_able": false,
+    "level": 25
+  },
+  "262": {
+    "race": 39,
+    "fuse_able": true,
+    "level": 25,
+    "min_level": 34,
+    "max_level": 49
+  },
+  "166": {
+    "race": 39,
+    "fuse_able": false,
+    "level": 53
+  },
+  "272": {
+    "race": 39,
+    "fuse_able": true,
+    "level": 53,
+    "special_fusion": [
+      [
+        88,
+        166,
+        129
+      ]
+    ]
+  },
+  "561": {
+    "race": 39,
+    "fuse_able": true,
+    "level": 31,
+    "special_fusion": [
+      [
+        399,
+        505
+      ]
+    ]
+  },
+  "359": {
+    "race": 39,
+    "fuse_able": false,
+    "level": 25
+  },
+  "505": {
+    "race": 39,
+    "fuse_able": true,
+    "level": 37,
+    "min_level": 50,
+    "max_level": 73
+  },
+  "220": {
+    "race": 39,
+    "fuse_able": false,
+    "level": 1
+  },
+  "355": {
+    "race": 39,
+    "fuse_able": false,
+    "level": 20
+  },
+  "490": {
+    "race": 39,
+    "fuse_able": false,
+    "level": 30
+  },
+  "489": {
+    "race": 39,
+    "fuse_able": true,
+    "level": 40,
+    "min_level": 74,
+    "max_level": 79
+  },
+  "122": {
+    "race": 39,
+    "fuse_able": true,
+    "level": 50,
+    "min_level": 80,
+    "max_level": 99
+  },
+  "156": {
+    "race": 39,
+    "fuse_able": false,
+    "level": 53
+  },
+  "323": {
+    "race": 39,
+    "fuse_able": false,
+    "level": 30
+  },
+  "227": {
+    "race": 39,
+    "fuse_able": true,
+    "level": 57,
+    "min_level": 100,
+    "max_level": 113
+  },
+  "161": {
+    "race": 39,
+    "fuse_able": false,
+    "level": 77
+  },
+  "387": {
+    "race": 39,
+    "fuse_able": false,
+    "level": 34
+  },
+  "624": {
+    "race": 39,
+    "fuse_able": true,
+    "level": 64,
+    "min_level": 114,
+    "max_level": 200
+  },
+  "192": {
+    "race": 39,
+    "fuse_able": false,
+    "level": 79
+  },
+  "591": {
+    "race": 4,
+    "fuse_able": true,
+    "level": 5,
+    "min_level": 0,
+    "max_level": 9
+  },
+  "82": {
+    "race": 4,
+    "fuse_able": true,
+    "level": 10,
+    "min_level": 10,
+    "max_level": 19
+  },
+  "344": {
+    "race": 4,
+    "fuse_able": true,
+    "level": 12,
+    "special_fusion": [
+      [
+        427,
+        370,
+        305
+      ]
+    ]
+  },
+  "427": {
+    "race": 4,
+    "fuse_able": true,
+    "level": 15,
+    "min_level": 20,
+    "max_level": 29
+  },
+  "173": {
+    "race": 4,
+    "fuse_able": false,
+    "level": 32
+  },
+  "485": {
+    "race": 4,
+    "fuse_able": true,
+    "level": 19,
+    "min_level": 30,
+    "max_level": 37
+  },
+  "179": {
+    "race": 4,
+    "fuse_able": false,
+    "level": 45
+  },
+  "39": {
+    "race": 4,
+    "fuse_able": false,
+    "level": 23
+  },
+  "644": {
+    "race": 4,
+    "fuse_able": true,
+    "level": 23,
+    "min_level": 38,
+    "max_level": 45
+  },
+  "31": {
+    "race": 4,
+    "fuse_able": false,
+    "level": 25
+  },
+  "518": {
+    "race": 4,
+    "fuse_able": true,
+    "level": 25,
+    "min_level": 46,
+    "max_level": 49
+  },
+  "339": {
+    "race": 4,
+    "fuse_able": true,
+    "level": 21,
+    "special_fusion": [
+      [
+        330,
+        235,
+        414
+      ]
+    ]
+  },
+  "414": {
+    "race": 4,
+    "fuse_able": true,
+    "level": 28,
+    "min_level": 50,
+    "max_level": 55
+  },
+  "171": {
+    "race": 4,
+    "fuse_able": false,
+    "level": 40
+  },
+  "678": {
+    "race": 4,
+    "fuse_able": true,
+    "level": 44,
+    "min_level": 56,
+    "max_level": 87
+  },
+  "394": {
+    "race": 4,
+    "fuse_able": false,
+    "level": 30
+  },
+  "674": {
+    "race": 4,
+    "fuse_able": true,
+    "level": 51,
+    "min_level": 88,
+    "max_level": 101
+  },
+  "379": {
+    "race": 4,
+    "fuse_able": true,
+    "level": 46,
+    "special_fusion": [
+      [
+        226,
+        334,
+        590
+      ]
+    ]
+  },
+  "590": {
+    "race": 4,
+    "fuse_able": true,
+    "level": 63,
+    "min_level": 102,
+    "max_level": 125
+  },
+  "418": {
+    "race": 4,
+    "fuse_able": true,
+    "level": 66,
+    "min_level": 126,
+    "max_level": 131
+  },
+  "649": {
+    "race": 4,
+    "fuse_able": true,
+    "level": 70,
+    "special_fusion": [
+      [
+        418,
+        672
+      ]
+    ]
+  },
+  "609": {
+    "race": 4,
+    "fuse_able": true,
+    "level": 69,
+    "min_level": 132,
+    "max_level": 137
+  },
+  "241": {
+    "race": 4,
+    "fuse_able": true,
+    "level": 72,
+    "min_level": 138,
+    "max_level": 200
+  },
+  "517": {
+    "race": 4,
+    "fuse_able": true,
+    "level": 91,
+    "special_fusion": [
+      [
+        418,
+        609,
+        241
+      ]
+    ]
+  },
+  "72": {
+    "race": 7,
+    "fuse_able": true,
+    "level": 56,
+    "special_fusion": [
+      [
+        74,
+        645
+      ]
+    ]
+  },
+  "204": {
+    "race": 7,
+    "fuse_able": true,
+    "level": 58,
+    "special_fusion": [
+      [
+        238,
+        632,
+        413
+      ]
+    ]
+  },
+  "333": {
+    "race": 7,
+    "fuse_able": false,
+    "level": 30
+  },
+  "304": {
+    "race": 7,
+    "fuse_able": true,
+    "level": 67,
+    "special_fusion": [
+      [
+        686,
+        564
+      ]
+    ]
+  },
+  "229": {
+    "race": 7,
+    "fuse_able": true,
+    "level": 70,
+    "special_fusion": [
+      [
+        258,
+        251,
+        546
+      ]
+    ]
+  },
+  "415": {
+    "race": 7,
+    "fuse_able": true,
+    "level": 83,
+    "special_fusion": [
+      [
+        686,
+        530
+      ]
+    ]
+  },
+  "340": {
+    "race": 7,
+    "fuse_able": false,
+    "level": 40
+  },
+  "569": {
+    "race": 7,
+    "fuse_able": false,
+    "level": 1
+  },
+  "614": {
+    "race": 7,
+    "fuse_able": true,
+    "level": 88,
+    "special_fusion": [
+      [
+        396,
+        434,
+        514
+      ]
+    ]
+  },
+  "671": {
+    "race": 7,
+    "fuse_able": true,
+    "level": 93,
+    "special_fusion": [
+      [
+        263,
+        248,
+        519
+      ]
+    ]
+  },
+  "598": {
+    "race": 7,
+    "fuse_able": true,
+    "level": 97,
+    "special_fusion": [
+      [
+        340,
+        530,
+        245
+      ],
+      [
+        197,
+        200,
+        199
+      ],
+      [
+        197,
+        200,
+        198
+      ],
+      [
+        197,
+        200,
+        201
+      ],
+      [
+        197,
+        200,
+        202
+      ]
+    ]
+  },
+  "131": {
+    "race": 9,
+    "fuse_able": true,
+    "level": 33,
+    "min_level": 0,
+    "max_level": 65
+  },
+  "326": {
+    "race": 9,
+    "fuse_able": true,
+    "level": 30,
+    "special_fusion": [
+      [
+        298,
+        317,
+        246
+      ]
+    ]
+  },
+  "246": {
+    "race": 9,
+    "fuse_able": true,
+    "level": 39,
+    "min_level": 66,
+    "max_level": 77
+  },
+  "373": {
+    "race": 9,
+    "fuse_able": true,
+    "level": 35,
+    "special_fusion": [
+      [
+        361,
+        320,
+        560
+      ]
+    ]
+  },
+  "137": {
+    "race": 9,
+    "fuse_able": false,
+    "level": 55
+  },
+  "560": {
+    "race": 9,
+    "fuse_able": true,
+    "level": 55,
+    "min_level": 78,
+    "max_level": 200
+  },
+  "371": {
+    "race": 9,
+    "fuse_able": false,
+    "level": 1
+  },
+  "558": {
+    "race": 9,
+    "fuse_able": true,
+    "level": 77,
+    "special_fusion": [
+      [
+        407,
+        560,
+        244
+      ]
+    ]
+  },
+  "57": {
+    "race": 9,
+    "fuse_able": true,
+    "level": 93,
+    "special_fusion": [
+      [
+        429,
+        563,
+        558
+      ]
+    ]
+  },
+  "341": {
+    "race": 12,
+    "fuse_able": false,
+    "level": 1
+  },
+  "417": {
+    "race": 12,
+    "fuse_able": true,
+    "level": 18,
+    "min_level": 0,
+    "max_level": 35
+  },
+  "434": {
+    "race": 12,
+    "fuse_able": true,
+    "level": 26,
+    "min_level": 36,
+    "max_level": 51
+  },
+  "440": {
+    "race": 12,
+    "fuse_able": false,
+    "level": 10
+  },
+  "308": {
+    "race": 12,
+    "fuse_able": false,
+    "level": 20
+  },
+  "74": {
+    "race": 12,
+    "fuse_able": true,
+    "level": 30,
+    "min_level": 52,
+    "max_level": 59
+  },
+  "536": {
+    "race": 12,
+    "fuse_able": false,
+    "level": 1
+  },
+  "365": {
+    "race": 12,
+    "fuse_able": true,
+    "level": 25,
+    "special_fusion": [
+      [
+        530,
+        396,
+        390
+      ]
+    ]
+  },
+  "617": {
+    "race": 12,
+    "fuse_able": false,
+    "level": 30
+  },
+  "200": {
+    "race": 12,
+    "fuse_able": false,
+    "level": 64
+  },
+  "530": {
+    "race": 12,
+    "fuse_able": true,
+    "level": 64,
+    "min_level": 60,
+    "max_level": 127
+  },
+  "413": {
+    "race": 12,
+    "fuse_able": true,
+    "level": 68,
+    "min_level": 128,
+    "max_level": 135
+  },
+  "600": {
+    "race": 12,
+    "fuse_able": true,
+    "level": 74,
+    "min_level": 136,
+    "max_level": 200
+  },
+  "299": {
+    "race": 12,
+    "fuse_able": true,
+    "level": 85,
+    "special_fusion": [
+      [
+        600,
+        454,
+        510
+      ],
+      [
+        600,
+        640,
+        510
+      ]
+    ]
+  },
+  "203": {
+    "race": 12,
+    "fuse_able": true,
+    "level": 74,
+    "special_fusion": [
+      [
+        74,
+        280
+      ]
+    ]
+  },
+  "401": {
+    "race": 12,
+    "fuse_able": true,
+    "level": 94,
+    "special_fusion": [
+      [
+        629,
+        530,
+        542
+      ]
+    ]
+  },
+  "400": {
+    "race": 12,
+    "fuse_able": true,
+    "level": 96,
+    "special_fusion": [
+      [
+        74,
+        413,
+        451
+      ]
+    ]
+  },
+  "315": {
+    "race": 17,
+    "fuse_able": true,
+    "level": 1,
+    "special_fusion": [
+      [
+        132,
+        329,
+        327
+      ]
+    ]
+  },
+  "132": {
+    "race": 17,
+    "fuse_able": true,
+    "level": 8,
+    "min_level": 0,
+    "max_level": 15
+  },
+  "442": {
+    "race": 17,
+    "fuse_able": false,
+    "level": 16
+  },
+  "8": {
+    "race": 17,
+    "fuse_able": false,
+    "level": 24
+  },
+  "626": {
+    "race": 17,
+    "fuse_able": true,
+    "level": 17,
+    "min_level": 16,
+    "max_level": 33
+  },
+  "639": {
+    "race": 17,
+    "fuse_able": false,
+    "level": 67
+  },
+  "86": {
+    "race": 17,
+    "fuse_able": false,
+    "level": 23
+  },
+  "441": {
+    "race": 17,
+    "fuse_able": false,
+    "level": 30
+  },
+  "90": {
+    "race": 17,
+    "fuse_able": true,
+    "level": 43,
+    "min_level": 34,
+    "max_level": 85
+  },
+  "645": {
+    "race": 17,
+    "fuse_able": true,
+    "level": 51,
+    "min_level": 86,
+    "max_level": 101
+  },
+  "497": {
+    "race": 17,
+    "fuse_able": true,
+    "level": 57,
+    "min_level": 102,
+    "max_level": 200
+  },
+  "421": {
+    "race": 17,
+    "fuse_able": true,
+    "level": 64,
+    "special_fusion": [
+      [
+        249,
+        563
+      ]
+    ]
+  },
+  "225": {
+    "race": 17,
+    "fuse_able": true,
+    "level": 72,
+    "special_fusion": [
+      [
+        632,
+        207,
+        661
+      ]
+    ]
+  },
+  "655": {
+    "race": 17,
+    "fuse_able": true,
+    "level": 81,
+    "special_fusion": [
+      [
+        248,
+        563
+      ]
+    ]
+  },
+  "59": {
+    "race": 19,
+    "fuse_able": true,
+    "level": 15,
+    "min_level": 0,
+    "max_level": 29
+  },
+  "668": {
+    "race": 19,
+    "fuse_able": false,
+    "level": 30
+  },
+  "13": {
+    "race": 19,
+    "fuse_able": false,
+    "level": 29
+  },
+  "236": {
+    "race": 19,
+    "fuse_able": true,
+    "level": 29,
+    "min_level": 30,
+    "max_level": 57
+  },
+  "116": {
+    "race": 19,
+    "fuse_able": false,
+    "level": 30
+  },
+  "218": {
+    "race": 19,
+    "fuse_able": false,
+    "level": 1
+  },
+  "115": {
+    "race": 19,
+    "fuse_able": false,
+    "level": 30
+  },
+  "213": {
+    "race": 19,
+    "fuse_able": true,
+    "level": 43,
+    "min_level": 58,
+    "max_level": 85
+  },
+  "319": {
+    "race": 19,
+    "fuse_able": true,
+    "level": 30,
+    "special_fusion": [
+      [
+        306,
+        87,
+        319
+      ]
+    ]
+  },
+  "469": {
+    "race": 19,
+    "fuse_able": false,
+    "level": 30
+  },
+  "149": {
+    "race": 19,
+    "fuse_able": true,
+    "level": 50,
+    "min_level": 86,
+    "max_level": 99
+  },
+  "118": {
+    "race": 19,
+    "fuse_able": false,
+    "level": 30
+  },
+  "95": {
+    "race": 19,
+    "fuse_able": true,
+    "level": 58,
+    "min_level": 100,
+    "max_level": 115
+  },
+  "133": {
+    "race": 19,
+    "fuse_able": false,
+    "level": 58
+  },
+  "117": {
+    "race": 19,
+    "fuse_able": false,
+    "level": 30
+  },
+  "364": {
+    "race": 19,
+    "fuse_able": false,
+    "level": 40
+  },
+  "521": {
+    "race": 19,
+    "fuse_able": true,
+    "level": 65,
+    "min_level": 116,
+    "max_level": 129
+  },
+  "492": {
+    "race": 19,
+    "fuse_able": false,
+    "level": 30
+  },
+  "525": {
+    "race": 19,
+    "fuse_able": false,
+    "level": 30
+  },
+  "523": {
+    "race": 19,
+    "fuse_able": true,
+    "level": 73,
+    "min_level": 130,
+    "max_level": 200
+  },
+  "546": {
+    "race": 19,
+    "fuse_able": false,
+    "level": 30
+  },
+  "324": {
+    "race": 19,
+    "fuse_able": false,
+    "level": 50
+  },
+  "232": {
+    "race": 19,
+    "fuse_able": true,
+    "level": 75,
+    "special_fusion": [
+      [
+        559,
+        650
+      ],
+      [
+        559,
+        581
+      ]
+    ]
+  },
+  "256": {
+    "race": 19,
+    "fuse_able": true,
+    "level": 79,
+    "special_fusion": [
+      [
+        232,
+        280
+      ]
+    ]
+  },
+  "1": {
+    "race": 19,
+    "fuse_able": true,
+    "level": 82,
+    "special_fusion": [
+      [
+        481,
+        90
+      ]
+    ]
+  },
+  "94": {
+    "race": 19,
+    "fuse_able": true,
+    "level": 85,
+    "special_fusion": [
+      [
+        474,
+        590,
+        484
+      ]
+    ]
+  },
+  "73": {
+    "race": 19,
+    "fuse_able": true,
+    "level": 86,
+    "special_fusion": [
+      [
+        631,
+        1
+      ]
+    ]
+  },
+  "81": {
+    "race": 19,
+    "fuse_able": true,
+    "level": 92,
+    "special_fusion": [
+      [
+        76,
+        523,
+        540
+      ]
+    ]
+  },
+  "338": {
+    "race": 12,
+    "fuse_able": false,
+    "level": 30
+  },
+  "318": {
+    "race": 20,
+    "fuse_able": false,
+    "level": 5
+  },
+  "146": {
+    "race": 20,
+    "fuse_able": true,
+    "level": 9,
+    "min_level": 0,
+    "max_level": 17
+  },
+  "459": {
+    "race": 20,
+    "fuse_able": false,
+    "level": 10
+  },
+  "457": {
+    "race": 20,
+    "fuse_able": false,
+    "level": 5
+  },
+  "44": {
+    "race": 20,
+    "fuse_able": true,
+    "level": 15,
+    "min_level": 18,
+    "max_level": 29
+  },
+  "388": {
+    "race": 20,
+    "fuse_able": false,
+    "level": 13
+  },
+  "625": {
+    "race": 20,
+    "fuse_able": true,
+    "level": 25,
+    "min_level": 30,
+    "max_level": 49
+  },
+  "193": {
+    "race": 20,
+    "fuse_able": false,
+    "level": 35
+  },
+  "257": {
+    "race": 20,
+    "fuse_able": true,
+    "level": 32,
+    "min_level": 50,
+    "max_level": 63
+  },
+  "165": {
+    "race": 20,
+    "fuse_able": false,
+    "level": 45
+  },
+  "679": {
+    "race": 20,
+    "fuse_able": true,
+    "level": 35,
+    "min_level": 64,
+    "max_level": 69
+  },
+  "196": {
+    "race": 20,
+    "fuse_able": false,
+    "level": 40
+  },
+  "447": {
+    "race": 20,
+    "fuse_able": true,
+    "level": 41,
+    "min_level": 70,
+    "max_level": 81
+  },
+  "682": {
+    "race": 20,
+    "fuse_able": true,
+    "level": 44,
+    "min_level": 82,
+    "max_level": 87
+  },
+  "438": {
+    "race": 20,
+    "fuse_able": true,
+    "level": 47,
+    "min_level": 88,
+    "max_level": 93
+  },
+  "175": {
+    "race": 20,
+    "fuse_able": false,
+    "level": 52
+  },
+  "130": {
+    "race": 20,
+    "fuse_able": true,
+    "level": 48,
+    "special_fusion": [
+      [
+        438,
+        45
+      ]
+    ]
+  },
+  "68": {
+    "race": 20,
+    "fuse_able": true,
+    "level": 50,
+    "min_level": 94,
+    "max_level": 99
+  },
+  "436": {
+    "race": 20,
+    "fuse_able": true,
+    "level": 51,
+    "special_fusion": [
+      [
+        438,
+        509
+      ]
+    ]
+  },
+  "395": {
+    "race": 20,
+    "fuse_able": true,
+    "level": 25,
+    "special_fusion": [
+      [
+        675,
+        313,
+        357
+      ]
+    ]
+  },
+  "42": {
+    "race": 20,
+    "fuse_able": false,
+    "level": 53
+  },
+  "675": {
+    "race": 20,
+    "fuse_able": true,
+    "level": 53,
+    "min_level": 100,
+    "max_level": 105
+  },
+  "80": {
+    "race": 20,
+    "fuse_able": true,
+    "level": 56,
+    "special_fusion": [
+      [
+        438,
+        123
+      ]
+    ]
+  },
+  "145": {
+    "race": 20,
+    "fuse_able": true,
+    "level": 65,
+    "min_level": 106,
+    "max_level": 200
+  },
+  "565": {
+    "race": 20,
+    "fuse_able": true,
+    "level": 85,
+    "special_fusion": [
+      [
+        530,
+        413,
+        675
+      ]
+    ]
+  },
+  "40": {
+    "race": 23,
+    "fuse_able": false,
+    "level": 1
+  },
+  "667": {
+    "race": 23,
+    "fuse_able": true,
+    "level": 1,
+    "min_level": 0,
+    "max_level": 1
+  },
+  "381": {
+    "race": 23,
+    "fuse_able": true,
+    "level": 3,
+    "special_fusion": [
+      [
+        602,
+        383,
+        312
+      ]
+    ]
+  },
+  "602": {
+    "race": 23,
+    "fuse_able": true,
+    "level": 6,
+    "min_level": 2,
+    "max_level": 11
+  },
+  "189": {
+    "race": 23,
+    "fuse_able": false,
+    "level": 30
+  },
+  "277": {
+    "race": 23,
+    "fuse_able": true,
+    "level": 30,
+    "special_fusion": [
+      [
+        647,
+        403,
+        189
+      ]
+    ]
+  },
+  "25": {
+    "race": 23,
+    "fuse_able": false,
+    "level": 11
+  },
+  "491": {
+    "race": 23,
+    "fuse_able": true,
+    "level": 11,
+    "min_level": 12,
+    "max_level": 21
+  },
+  "111": {
+    "race": 23,
+    "fuse_able": true,
+    "level": 16,
+    "min_level": 22,
+    "max_level": 31
+  },
+  "107": {
+    "race": 23,
+    "fuse_able": true,
+    "level": 31,
+    "min_level": 32,
+    "max_level": 61
+  },
+  "154": {
+    "race": 23,
+    "fuse_able": false,
+    "level": 46
+  },
+  "603": {
+    "race": 23,
+    "fuse_able": true,
+    "level": 36,
+    "min_level": 62,
+    "max_level": 71
+  },
+  "190": {
+    "race": 23,
+    "fuse_able": false,
+    "level": 52
+  },
+  "587": {
+    "race": 23,
+    "fuse_able": true,
+    "level": 52,
+    "min_level": 72,
+    "max_level": 200
+  },
+  "187": {
+    "race": 23,
+    "fuse_able": false,
+    "level": 62
+  },
+  "366": {
+    "race": 23,
+    "fuse_able": false,
+    "level": 45
+  },
+  "542": {
+    "race": 23,
+    "fuse_able": true,
+    "level": 93,
+    "special_fusion": [
+      [
+        613,
+        603,
+        560
+      ]
+    ]
+  },
+  "686": {
+    "race": 26,
+    "fuse_able": true,
+    "level": 38,
+    "min_level": 0,
+    "max_level": 75
+  },
+  "294": {
+    "race": 26,
+    "fuse_able": false,
+    "level": 50
+  },
+  "429": {
+    "race": 26,
+    "fuse_able": true,
+    "level": 45,
+    "min_level": 76,
+    "max_level": 89
+  },
+  "291": {
+    "race": 26,
+    "fuse_able": false,
+    "level": 50
+  },
+  "336": {
+    "race": 26,
+    "fuse_able": false,
+    "level": 26
+  },
+  "290": {
+    "race": 26,
+    "fuse_able": false,
+    "level": 50
+  },
+  "407": {
+    "race": 26,
+    "fuse_able": true,
+    "level": 52,
+    "min_level": 90,
+    "max_level": 200
+  },
+  "100": {
+    "race": 26,
+    "fuse_able": true,
+    "level": 70,
+    "special_fusion": [
+      [
+        290,
+        291,
+        294
+      ]
+    ]
+  },
+  "99": {
+    "race": 26,
+    "fuse_able": true,
+    "level": 72,
+    "special_fusion": [
+      [
+        407,
+        429,
+        675
+      ],
+      [
+        407,
+        429,
+        564
+      ]
+    ]
+  },
+  "34": {
+    "race": 27,
+    "fuse_able": false,
+    "level": 4
+  },
+  "368": {
+    "race": 27,
+    "fuse_able": true,
+    "level": 4,
+    "special_fusion": [
+      [
+        547,
+        369,
+        648
+      ]
+    ]
+  },
+  "547": {
+    "race": 27,
+    "fuse_able": true,
+    "level": 4,
+    "min_level": 0,
+    "max_level": 7
+  },
+  "183": {
+    "race": 27,
+    "fuse_able": false,
+    "level": 26
+  },
+  "276": {
+    "race": 27,
+    "fuse_able": true,
+    "level": 26,
+    "special_fusion": [
+      [
+        520,
+        120,
+        183
+      ]
+    ]
+  },
+  "243": {
+    "race": 27,
+    "fuse_able": true,
+    "level": 7,
+    "min_level": 8,
+    "max_level": 13
+  },
+  "162": {
+    "race": 27,
+    "fuse_able": false,
+    "level": 28
+  },
+  "15": {
+    "race": 27,
+    "fuse_able": false,
+    "level": 1
+  },
+  "249": {
+    "race": 27,
+    "fuse_able": true,
+    "level": 11,
+    "min_level": 14,
+    "max_level": 21
+  },
+  "164": {
+    "race": 27,
+    "fuse_able": false,
+    "level": 30
+  },
+  "271": {
+    "race": 27,
+    "fuse_able": true,
+    "level": 30,
+    "special_fusion": [
+      [
+        467,
+        641,
+        164
+      ]
+    ]
+  },
+  "75": {
+    "race": 27,
+    "fuse_able": true,
+    "level": 12,
+    "special_fusion": [
+      [
+        243,
+        239
+      ]
+    ]
+  },
+  "7": {
+    "race": 27,
+    "fuse_able": false,
+    "level": 17
+  },
+  "129": {
+    "race": 27,
+    "fuse_able": true,
+    "level": 17,
+    "min_level": 22,
+    "max_level": 33
+  },
+  "158": {
+    "race": 27,
+    "fuse_able": false,
+    "level": 35
+  },
+  "270": {
+    "race": 27,
+    "fuse_able": true,
+    "level": 35,
+    "special_fusion": [
+      [
+        88,
+        262,
+        158
+      ]
+    ]
+  },
+  "41": {
+    "race": 27,
+    "fuse_able": false,
+    "level": 24
+  },
+  "673": {
+    "race": 27,
+    "fuse_able": true,
+    "level": 24,
+    "min_level": 34,
+    "max_level": 47
+  },
+  "125": {
+    "race": 27,
+    "fuse_able": true,
+    "level": 33,
+    "min_level": 48,
+    "max_level": 65
+  },
+  "33": {
+    "race": 27,
+    "fuse_able": false,
+    "level": 36
+  },
+  "544": {
+    "race": 27,
+    "fuse_able": true,
+    "level": 36,
+    "min_level": 66,
+    "max_level": 71
+  },
+  "182": {
+    "race": 27,
+    "fuse_able": false,
+    "level": 55
+  },
+  "448": {
+    "race": 27,
+    "fuse_able": true,
+    "level": 38,
+    "min_level": 72,
+    "max_level": 75
+  },
+  "176": {
+    "race": 27,
+    "fuse_able": false,
+    "level": 48
+  },
+  "444": {
+    "race": 27,
+    "fuse_able": false,
+    "level": 25
+  },
+  "656": {
+    "race": 27,
+    "fuse_able": true,
+    "level": 44,
+    "min_level": 76,
+    "max_level": 200
+  },
+  "653": {
+    "race": 27,
+    "fuse_able": false,
+    "level": 51
+  },
+  "432": {
+    "race": 27,
+    "fuse_able": true,
+    "level": 63,
+    "special_fusion": [
+      [
+        564,
+        244
+      ]
+    ]
+  },
+  "234": {
+    "race": 27,
+    "fuse_able": true,
+    "level": 64,
+    "special_fusion": [
+      [
+        587,
+        487
+      ]
+    ]
+  },
+  "346": {
+    "race": 27,
+    "fuse_able": false,
+    "level": 30
+  },
+  "431": {
+    "race": 27,
+    "fuse_able": true,
+    "level": 67,
+    "special_fusion": [
+      [
+        453,
+        96
+      ]
+    ]
+  },
+  "516": {
+    "race": 30,
+    "fuse_able": true,
+    "level": 42,
+    "min_level": 0,
+    "max_level": 83
+  },
+  "526": {
+    "race": 30,
+    "fuse_able": false,
+    "level": 50
+  },
+  "223": {
+    "race": 30,
+    "fuse_able": false,
+    "level": 1
+  },
+  "363": {
+    "race": 30,
+    "fuse_able": false,
+    "level": 25
+  },
+  "514": {
+    "race": 30,
+    "fuse_able": true,
+    "level": 59,
+    "min_level": 84,
+    "max_level": 117
+  },
+  "30": {
+    "race": 30,
+    "fuse_able": false,
+    "level": 70
+  },
+  "38": {
+    "race": 30,
+    "fuse_able": false,
+    "level": 63
+  },
+  "620": {
+    "race": 30,
+    "fuse_able": true,
+    "level": 63,
+    "min_level": 118,
+    "max_level": 125
+  },
+  "300": {
+    "race": 30,
+    "fuse_able": true,
+    "level": 65,
+    "special_fusion": [
+      [
+        295,
+        430,
+        46
+      ]
+    ]
+  },
+  "610": {
+    "race": 30,
+    "fuse_able": true,
+    "level": 65,
+    "special_fusion": [
+      [
+        514,
+        428,
+        619
+      ]
+    ]
+  },
+  "531": {
+    "race": 30,
+    "fuse_able": false,
+    "level": 1
+  },
+  "307": {
+    "race": 30,
+    "fuse_able": true,
+    "level": 45,
+    "special_fusion": [
+      [
+        69,
+        362,
+        335
+      ]
+    ]
+  },
+  "69": {
+    "race": 30,
+    "fuse_able": true,
+    "level": 83,
+    "min_level": 126,
+    "max_level": 200
+  },
+  "197": {
+    "race": 30,
+    "fuse_able": false,
+    "level": 83
+  },
+  "70": {
+    "race": 30,
+    "fuse_able": false,
+    "level": 90
+  },
+  "640": {
+    "race": 36,
+    "fuse_able": true,
+    "level": 1,
+    "special_fusion": [
+      [
+        454,
+        282,
+        227
+      ]
+    ]
+  },
+  "342": {
+    "race": 36,
+    "fuse_able": false,
+    "level": 30
+  },
+  "420": {
+    "race": 36,
+    "fuse_able": false,
+    "level": 30
+  },
+  "419": {
+    "race": 36,
+    "fuse_able": true,
+    "level": 40,
+    "special_fusion": [
+      [
+        335,
+        403,
+        169
+      ]
+    ]
+  },
+  "533": {
+    "race": 36,
+    "fuse_able": false,
+    "level": 1
+  },
+  "280": {
+    "race": 36,
+    "fuse_able": true,
+    "level": 59,
+    "special_fusion": [
+      [
+        74,
+        560,
+        675
+      ],
+      [
+        530,
+        246,
+        145
+      ],
+      [
+        413,
+        246,
+        149
+      ]
+    ]
+  },
+  "484": {
+    "race": 36,
+    "fuse_able": true,
+    "level": 64,
+    "special_fusion": [
+      [
+        131,
+        74,
+        521
+      ]
+    ]
+  },
+  "219": {
+    "race": 36,
+    "fuse_able": false,
+    "level": 1
+  },
+  "454": {
+    "race": 36,
+    "fuse_able": true,
+    "level": 69,
+    "special_fusion": [
+      [
+        510,
+        282,
+        601
+      ],
+      [
+        510,
+        126,
+        433
+      ]
+    ]
+  },
+  "103": {
+    "race": 36,
+    "fuse_able": false,
+    "level": 30
+  },
+  "646": {
+    "race": 36,
+    "fuse_able": true,
+    "level": 70,
+    "special_fusion": [
+      [
+        131,
+        560,
+        413
+      ]
+    ]
+  },
+  "384": {
+    "race": 36,
+    "fuse_able": false,
+    "level": 40
+  },
+  "258": {
+    "race": 36,
+    "fuse_able": true,
+    "level": 50,
+    "special_fusion": [
+      [
+        118,
+        116
+      ]
+    ]
+  },
+  "613": {
+    "race": 36,
+    "fuse_able": true,
+    "level": 72,
+    "special_fusion": [
+      [
+        407,
+        227,
+        590
+      ],
+      [
+        631,
+        280,
+        613
+      ],
+      [
+        631,
+        280,
+        650
+      ]
+    ]
+  },
+  "127": {
+    "race": 36,
+    "fuse_able": true,
+    "level": 82,
+    "special_fusion": [
+      [
+        78,
+        623,
+        624
+      ]
+    ]
+  },
+  "97": {
+    "race": 36,
+    "fuse_able": false,
+    "level": 50
+  },
+  "76": {
+    "race": 36,
+    "fuse_able": true,
+    "level": 85,
+    "special_fusion": [
+      [
+        413,
+        74,
+        631
+      ]
+    ]
+  },
+  "92": {
+    "race": 36,
+    "fuse_able": true,
+    "level": 85,
+    "special_fusion": [
+      [
+        76,
+        484,
+        249
+      ]
+    ]
+  },
+  "472": {
+    "race": 36,
+    "fuse_able": false,
+    "level": 95
+  },
+  "456": {
+    "race": 36,
+    "fuse_able": true,
+    "level": 90,
+    "special_fusion": [
+      [
+        256,
+        484
+      ]
+    ]
+  },
+  "49": {
+    "race": 36,
+    "fuse_able": true,
+    "level": 92,
+    "special_fusion": [
+      [
+        478,
+        484
+      ]
+    ]
+  },
+  "474": {
+    "race": 36,
+    "fuse_able": true,
+    "level": 95,
+    "special_fusion": [
+      [
+        250,
+        613,
+        280
+      ]
+    ]
+  },
+  "473": {
+    "race": 36,
+    "fuse_able": true,
+    "level": 95,
+    "special_fusion": [
+      [
+        250,
+        484,
+        474
+      ]
+    ]
+  },
+  "91": {
+    "race": 36,
+    "fuse_able": true,
+    "level": 95,
+    "special_fusion": [
+      [
+        76,
+        484,
+        88
+      ],
+      [
+        197,
+        202,
+        199
+      ],
+      [
+        197,
+        202,
+        198
+      ],
+      [
+        197,
+        202,
+        201
+      ],
+      [
+        197,
+        199,
+        201
+      ]
+    ]
+  },
+  "555": {
+    "race": 36,
+    "fuse_able": false,
+    "level": 95
+  },
+  "0": {
+    "race": 36,
+    "fuse_able": true,
+    "level": 96,
+    "special_fusion": [
+      [
+        540,
+        49,
+        94
+      ]
+    ]
+  }
+}
