@@ -509,8 +509,8 @@ static inline void load_race_fusions(const char* filename) {
 #ifdef SPAM
 			race_fusion_count++;
 #endif
-			if (race1 < race2) race_fusions[result_race][race1] = race2;
-			else race_fusions[result_race][race2] = race1;
+			if (race1 < race2) race_fusions[race1][race2] = result_race;
+			else race_fusions[race2][race1] = result_race;
 		}
 	}
 	cJSON_Delete(root);
@@ -1123,7 +1123,7 @@ static THREAD_RETURN_TYPE worker_thread(void* arg) {
 					}
 				} else { // regular fusion (level or elemental)
 					WORKER_LOG("Processing regular fusion for demon ID: %d\n", work->demon_id);
-					for (char race1 = 0; race1 < MAX_RACES; race1++) for (char race2 = race1 + 1; race2 < MAX_RACES; race2++) if (race_fusions[all_demons[work->demon_id].race][race1] == race2) {
+					for (char race1 = 0; race1 < MAX_RACES; race1++) for (char race2 = race1 + 1; race2 < MAX_RACES; race2++) if (race_fusions[race1][race2] == all_demons[work->demon_id].race) {
 						RaceArray* race1_array = &demons_by_race[race1];
 						RaceArray* race2_array = &demons_by_race[race2];
 						for (int demon1 = 0; demon1 < race1_array->count && race1_array->demons[demon1]->level < all_demons[work->demon_id].fusions[f].max_level; demon1++) {
