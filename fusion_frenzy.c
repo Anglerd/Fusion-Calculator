@@ -124,7 +124,7 @@ typedef struct { MUTEX cs; int readers; COND_VAR cond; } RWLOCK; // simple reade
 #endif
 #endif
 
-#define MAX_DEMONS 687
+#define MAX_DEMONS 689
 #define MAX_RACES 41
 #define MAX_COMPONENTS 3
 #define MAX_FUSIONS 6
@@ -706,7 +706,7 @@ static int count_incomplete_children(ChildFusion* fusion, int depth, int target_
 		RW_UNLOCK_RD(&child->result_rwlock);
 		int demon_cost = MAX_DEMONS; // Start with worst-case
 		RW_RDLOCK(&child->child_rwlock);
-		if (child->fusion_count == 0) demon_cost = 0; // Just the child itself
+		if (child->fusion_count == 0) demon_cost = base_demons[child->demon_id] ? 0 : 1; // if no fusions, cost is 0 if it's a base demon, 1 if it's not (since we know that non-base demons need to be fused at least once to be obtained, we can use this as a pruning heuristic to avoid needlessly exploring paths that are already worse than current best)
 		else { // Recursively explore child's fusions to find best incomplete path
 			for (int c = 0; c < child->fusion_count; c++) {
 				if (!child->children || !child->children[c].components) {
@@ -773,60 +773,71 @@ static void update_this_work(WorkItem* work) {
 	bool retry = true;
 	bool found_best_count;
 	RW_WRLOCK(&work->child_rwlock);
-	while (retry) {
-		retry = false;
-		found_best_count = false;
-		for (int fusion_index = 0; fusion_index < work->fusion_count; fusion_index++) {
-			char component_count = work->children[fusion_index].component_count;
-			int this_fusion_count = 1;
-			bool all_done = true;
-			if (!work->children || !work->children[fusion_index].components) {
-				ERR_LOG("Warning: Null child fusion encountered during update_this_work for demon ID %d\n", work->demon_id);
-				continue;
-			}
-			for (char comp = 0; comp < component_count; comp++) {
-				if (!work->children[fusion_index].components[comp]) {
-					ERR_LOG("Warning: Null child work item encountered during update_this_work for demon ID %d\n", work->demon_id);
-					all_done = false;
-					break;
-				}
-				RW_RDLOCK(&work->children[fusion_index].components[comp]->result_rwlock);
-				if (!work->children[fusion_index].components[comp]->result) {
-					all_done = false;
-					RW_UNLOCK_RD(&work->children[fusion_index].components[comp]->result_rwlock);
-					break;
-				}
-				this_fusion_count += work->children[fusion_index].components[comp]->result->fusion_count;
-				RW_UNLOCK_RD(&work->children[fusion_index].components[comp]->result_rwlock);
-			}
-			if (all_done && this_fusion_count < work->best_fusion_count) {
-				work->best_fusion_count = this_fusion_count;
-				found_best_count = true;
-				if (fusion_index != 0) retry = true; // found a better complete fusion count, need to re-check for pruning opportunities
-			} else if (all_done && this_fusion_count == work->best_fusion_count && !found_best_count) found_best_count = true;
-			else if (all_done || (work->best_fusion_count < MAX_DEMONS && count_incomplete_children(&work->children[fusion_index], work->best_fusion_count, work->demon_id) >= work->best_fusion_count)) {
-				for (int comp = 0; comp < work->children[fusion_index].component_count; comp++) {
-					WorkItem* child = work->children[fusion_index].components[comp];
-					if (!child) {
-						ERR_LOG("Warning: Null child work item encountered during prune_fusion for demon ID %d\n", work->demon_id);
-						continue;
-					}
-					MUTEX_LOCK(&child->parent_mutex);
-					child->parent[work->demon_id].ref_count--;
-					MUTEX_UNLOCK(&child->parent_mutex);
-				}
-				free(work->children[fusion_index].components);
-				work->children[fusion_index].components = NULL;
-				for (int i = fusion_index; i < work->fusion_count - 1; i++) work->children[i] = work->children[i + 1];
-				work->fusion_count--;
-#ifdef DEBUG
-				SYNC_ADD(&pruned_branches, 1);
-				SPAM_LOG("Pruned fusion %d for demon ID %d due to best fusion count %d\n", fusion_index, work->demon_id, work->best_fusion_count);
-#endif
-				fusion_index--; // re-check this index since we just shifted a new fusion into it
-			}
+	// use a 2-pass approach to first find the best fusion count among complete fusions, then prune any fusions that are already worse than the best complete fusion count. We use 2 passes to avoid using the expensive count_incomplete_children function on every fusion before we even know what the best complete fusion count is
+	int best_completed_idx = -1;
+	// --- PASS 1: Find the absolute lowest completed cost without mutation ---
+    for (int fusion_index = 0; fusion_index < work->fusion_count; fusion_index++) {
+        if (!work->children || !work->children[fusion_index].components) continue;
+        int this_fusion_count = 1;
+        bool all_done = true;
+        char component_count = work->children[fusion_index].component_count;
+        for (char comp = 0; comp < component_count; comp++) {
+            WorkItem* child = work->children[fusion_index].components[comp];
+            if (!child) { all_done = false; break; }
+            RW_RDLOCK(&child->result_rwlock);
+            if (!child->result) {
+                all_done = false;
+                RW_UNLOCK_RD(&child->result_rwlock);
+                break;
+            }
+            this_fusion_count += child->result->fusion_count;
+            RW_UNLOCK_RD(&child->result_rwlock);
+        }
+		if (all_done && this_fusion_count == work->best_fusion_count && best_completed_idx == -1) best_completed_idx = fusion_index; // Keep the first one that matches the existing best_fusion_count
+		else if (all_done && this_fusion_count < work->best_fusion_count) {
+			work->best_fusion_count = this_fusion_count;
+			best_completed_idx = fusion_index;
 		}
-	}
+    }
+	// --- PASS 2: Prune useless nodes & compact the array in O(N) using two-pointers ---
+    int write_idx = 0;
+    for (int read_idx = 0; read_idx < work->fusion_count; read_idx++) {
+        if (!work->children || !work->children[read_idx].components) continue;
+        int this_fusion_count = 1;
+        bool all_done = true;
+        char component_count = work->children[read_idx].component_count;
+        for (char comp = 0; comp < component_count; comp++) {
+            WorkItem* child = work->children[read_idx].components[comp];
+            RW_RDLOCK(&child->result_rwlock);
+            if (!child->result) {
+                all_done = false;
+                RW_UNLOCK_RD(&child->result_rwlock);
+                break;
+            }
+            this_fusion_count += child->result->fusion_count;
+            RW_UNLOCK_RD(&child->result_rwlock);
+        }
+		if ((all_done && (this_fusion_count > work->best_fusion_count || (this_fusion_count == work->best_fusion_count && read_idx != best_completed_idx))) || (!all_done && work->best_fusion_count < MAX_DEMONS && work->best_fusion_count < count_incomplete_children(&work->children[read_idx], work->best_fusion_count, work->demon_id))) {
+            for (int comp = 0; comp < component_count; comp++) {
+                WorkItem* child = work->children[read_idx].components[comp];
+                if (child) {
+                    MUTEX_LOCK(&child->parent_mutex);
+                    child->parent[work->demon_id].ref_count--;
+                    MUTEX_UNLOCK(&child->parent_mutex);
+                }
+            }
+            free(work->children[read_idx].components);
+            work->children[read_idx].components = NULL;
+#ifdef DEBUG
+            SYNC_ADD(&pruned_branches, 1);
+            SPAM_LOG("Pruned fusion %d for demon ID %d due to best fusion count %d\n", read_idx, work->demon_id, work->best_fusion_count);
+#endif
+        } else {
+            if (write_idx != read_idx) work->children[write_idx] = work->children[read_idx];
+            write_idx++;
+        }
+    }
+    work->fusion_count = write_idx;
 	RW_UNLOCK_WR(&work->child_rwlock);
 	MUTEX_UNLOCK(&work->best_fusion_count_mutex);
 	SPAM_LOG("Finished evaluating fusions for demon ID %d, best fusion count is %d, remaining fusion count is %d\n", work->demon_id, work->best_fusion_count, work->fusion_count);
