@@ -170,6 +170,7 @@ typedef struct {
 	unsigned char max_level; // level range for regular fusions
 	Demon** demon_components;  // component demons of this fusion set to null when not a special fusion
 	char component_count; // number of components, Overloaded with race when racial fusing to make elementals
+	bool variants_allowed; // whether this fusion allows for variant components (ie, if this is a special fusion, then variants of the specified species are allowed)
 } Fusion;
 
 // Fusion tree node
@@ -228,6 +229,7 @@ typedef struct WorkItem {
 typedef struct Demon {
 	char race; // race of the demon
 	unsigned char level; // level of the demon
+	int species; // species of the demon, racial fusions cannot be the same species, and variant components must be the same species as the demon they are replacing, so this is used for validating fusions with variants and racial fusions
 	Fusion* fusions;  // Possible fusions for this demon
 	char fusion_count; // number of fusions available
 	WorkItem* work_item; // work item for this demon
@@ -235,11 +237,11 @@ typedef struct Demon {
 	AnchorGroup* anchor_group; // anchor group this demon belongs to
 } Demon;
 
-// Collection of demons in a race
+// Collection of demons (race/species groupings, etc)
 typedef struct {
-	Demon** demons; // demons of this race
-	int count; // number of demons in this race
-} RaceArray;
+	Demon** demons; // demons in this grouping
+	int count; // number of demons in this grouping
+} DemonArray;
 
 // Work queue for thread pool
 typedef struct {
@@ -260,7 +262,8 @@ typedef struct {
 } Worker;
 
 // Global variables
-static RaceArray demons_by_race[MAX_RACES];
+static DemonArray demons_by_race[MAX_RACES];
+static DemonArray demons_by_species[MAX_DEMONS]; // indexed by species, each species can have multiple demons due to variants
 static Demon all_demons[MAX_DEMONS];
 static char race_fusions[MAX_RACES][MAX_RACES];
 static char elemental_chart[ELEMENTALS][MAX_RACES];
@@ -390,6 +393,7 @@ static inline void load_demons(const char* filename) {
 		cJSON* level = cJSON_GetObjectItem(demon_entry, "level");
 		cJSON* fuse_able = cJSON_GetObjectItem(demon_entry, "fuse_able");
 		Demon* this_demon = &all_demons[demon_id];
+		this_demon->species = cJSON_GetObjectItem(demon_entry, "species")->valueint;
 		RW_INIT(&this_demon->work_rwlock);
 		this_demon->race = (char)(race ? race->valueint : 0);
 		this_demon->level = (unsigned char)(level ? level->valueint : 0);
@@ -400,10 +404,17 @@ static inline void load_demons(const char* filename) {
 #ifdef SPAM
 		demon_count++;
 #endif
-		if (this_demon->race >= 0 && this_demon->race < MAX_RACES) {
+		if (this_demon->race < 0 || this_demon->race >= MAX_RACES) ERR_LOG("Warning: Demon ID %d has invalid race %d\n", demon_id, this_demon->race);
+		else {
 			demons_by_race[this_demon->race].demons = (Demon**)realloc(demons_by_race[this_demon->race].demons, (demons_by_race[this_demon->race].count + 1) * sizeof(Demon*));
 			if (!demons_by_race[this_demon->race].demons) ERR_EXIT("Error: Failed to allocate memory for demons by race\n");
 			demons_by_race[this_demon->race].demons[demons_by_race[this_demon->race].count++] = this_demon;
+		}
+		if (this_demon->species < 0 || this_demon->species >= MAX_DEMONS) ERR_LOG("Warning: Demon ID %d has invalid species %d\n", demon_id, this_demon->species);
+		else {
+			demons_by_species[this_demon->species].demons = (Demon**)realloc(demons_by_species[this_demon->species].demons, (demons_by_species[this_demon->species].count + 1) * sizeof(Demon*));
+			if (!demons_by_species[this_demon->species].demons) ERR_EXIT("Error: Failed to allocate memory for demons by species\n");
+			demons_by_species[this_demon->species].demons[demons_by_species[this_demon->species].count++] = this_demon;
 		}
 		if (!(fuse_able && fuse_able->valueint)) continue;
 		cJSON* special_fusion = cJSON_GetObjectItem(demon_entry, "special_fusion");
@@ -415,7 +426,10 @@ static inline void load_demons(const char* filename) {
 					break;
 				}
 				Fusion this_fusion;
-				this_fusion.component_count = cJSON_GetArraySize(recipe);
+				cJSON* variants_item = cJSON_GetObjectItem(recipe, "variants_allowed");
+        		this_fusion.variants_allowed = cJSON_IsTrue(variants_item);
+				cJSON* demons_array = cJSON_GetObjectItem(recipe, "demons");
+        		this_fusion.component_count = cJSON_GetArraySize(demons_array);
 				if (this_fusion.component_count > MAX_COMPONENTS) {
 					ERR_LOG("Warning: Too many components in special fusion for demon %d\n", demon_id);
 					continue;
@@ -424,7 +438,7 @@ static inline void load_demons(const char* filename) {
 				if (!this_fusion.demon_components) ERR_EXIT("Error: Failed to allocate memory for fusion components\n");
 				cJSON* component;
 				char index = 0;
-				cJSON_ArrayForEach(component, recipe) {
+				cJSON_ArrayForEach(component, demons_array) {
 					const int comp_id = component->valueint;
 					if (comp_id < 0 || comp_id >= MAX_DEMONS) {
 						ERR_LOG("Warning: demon_id for component is out of bounds: %d\n", comp_id);
@@ -978,7 +992,7 @@ static inline bool add_demons_to_work_queue(WorkItem* parent_work, Demon** demon
 				for (int i = 0; i < visited_count - 1; i++) RW_UNLOCK_RD(&stack[i]->child_rwlock);
 				SPAM_LOG("Cycle detected: Component %d is an ancestor of parent %d\n", demon_id, parent_work->demon_id);
 				BITMASK_CLEAR(&parent_work->available_demons, demons[demon_index] - all_demons); // mark this demon as unavailable for future fusions in this branch
-				RW_UNLOCK_RD(&parent_work->child_rwlock); // unlock the current node before returning since we won't be processing it further
+				RW_UNLOCK_RD(&parent_work->child_rwlock); // unlock the current node before returning since we won't be processing it further, we can't try to shortcut this by going up to visited_count as the newest visited node may be an ancestor instead of this current node
 				return false;
 			}
 			RW_RDLOCK(&node->child_rwlock); // lock node to safely check its children for cycles and to merge available demons
@@ -1000,15 +1014,14 @@ static inline bool add_demons_to_work_queue(WorkItem* parent_work, Demon** demon
 		} // No cycle found: propagate the parent's availability mask to every node in the subtree
 		for (int stack_index = 0; stack_index < visited_count; stack_index++) {
 			if (!stack[stack_index]) ERR_EXIT("Error: Null work item in stack[%d] during cycle check for parent demon ID %d\n", stack_index, parent_work->demon_id);
-			BITMASK_AND(&stack[stack_index]->available_demons, &parent_work->available_demons);
+			BITMASK_AND(&stack[stack_index]->available_demons, &parent_work->available_demons); // merge available demons to prevent future cycles through other paths
 			RW_UNLOCK_RD(&stack[stack_index]->child_rwlock); // unlock each node after merging available demons
 		}
-
 	} // if we reach here, no cycles detected, we can safely add the fusion
 	RW_UNLOCK_RD(&parent_work->child_rwlock); // release read lock before acquiring write lock to add new fusion
 	SPAM_LOG("No cycles detected for any components, proceeding to add fusion for parent demon ID %d\n", parent_work->demon_id);
 	RW_WRLOCK(&parent_work->child_rwlock);
-	for (char i = 0; i < demon_count; i++) if (!CHECK_DEMON_AVAILABILITY(parent_work, demons[i])) {
+	for (char i = 0; i < demon_count; i++) if (!CHECK_DEMON_AVAILABILITY(parent_work, demons[i])) { // double check availability under write lock before adding fusion, if any demon is now unavailable it means there was a concurrent modification to the work item that caused one of the demons to become unavailable, so we should skip adding this fusion since it is no longer valid (avoids TOCTOU race conditions)
 		SPAM_LOG("Demon ID %d was concurrently set to not available to parent demon ID %d, skipping this fusion\n", (int)(demons[i] - all_demons), parent_work->demon_id);
 		RW_UNLOCK_WR(&parent_work->child_rwlock);
 		return false;
@@ -1115,6 +1128,33 @@ static THREAD_RETURN_TYPE worker_thread(void* arg) {
 			for (char f = 0; f < demon->fusion_count; f++) {
 				if (demon->fusions[f].demon_components != NULL) { // special fusion
 					WORKER_LOG("Processing special fusion for demon ID: %d\n", work->demon_id);
+					if (demon->fusions[f].variants_allowed) { // odometer approach to iterate through all combinations of species for the components, we have to do this because the components can be any demon of the required species. We use specifically an odometer approach to flex on the nubs and show them that we can work with any number of components without needing to hardcode nested loops for each possible component count
+						int* species_indices = (int*)malloc(demon->fusions[f].component_count * sizeof(int));
+						if (!species_indices) ERR_EXIT("Error: Failed to allocate species indices for special fusion for demon ID %d\n", work->demon_id);
+						for (int i = 0; i < demon->fusions[f].component_count; i++) species_indices[i] = 0;
+						Demon** components = (Demon**)malloc(demon->fusions[f].component_count * sizeof(Demon*));
+						if (!components) ERR_EXIT("Error: Failed to allocate components array for special fusion for demon ID %d\n", work->demon_id);
+						while (species_indices[0] < demons_by_species[demon->fusions[f].demon_components[0]->species].count) {
+							bool all_available = true;
+							for (int i = 0; i < demon->fusions[f].component_count; i++) {
+								components[i] = demons_by_species[demon->fusions[f].demon_components[i]->species].demons[species_indices[i]];
+								if (!CHECK_DEMON_AVAILABILITY(work, components[i])) {
+									all_available = false;
+									break; // if any component is unavailable, skip this combination
+								}
+							}
+							if (all_available && add_demons_to_work_queue(work, components, demon->fusions[f].component_count)) any_completed = true;
+							int increment_index = demon->fusions[f].component_count - 1;
+							species_indices[increment_index]++;
+							while (increment_index > 0 && species_indices[increment_index] >= demons_by_species[demon->fusions[f].demon_components[increment_index]->species].count) {
+								species_indices[increment_index--] = 0;
+								species_indices[increment_index]++;
+							}
+						}
+						free(components);
+						free(species_indices);
+						continue;
+					}
 					bool all_available = true;
 					for (int i = 0; i < demon->fusions[f].component_count; i++) if (!CHECK_DEMON_AVAILABILITY(work, demon->fusions[f].demon_components[i])) {
 						all_available = false;
@@ -1127,7 +1167,7 @@ static THREAD_RETURN_TYPE worker_thread(void* arg) {
 						if (!CHECK_DEMON_AVAILABILITY(work, comp1)) continue;
 						for (int demon2 = demon1 + 1; demon2 < demons_by_race[demon->fusions[f].component_count].count; demon2++) {
 							const Demon* comp2 = demons_by_race[demon->fusions[f].component_count].demons[demon2];
-							if (!CHECK_DEMON_AVAILABILITY(work, comp2)) continue;
+							if (!CHECK_DEMON_AVAILABILITY(work, comp2) || comp1->species == comp2->species) continue;
 							WORKER_LOG("Adding racial fusion for demon ID: %d using components %d and %d\n", work->demon_id, comp1 - all_demons, comp2 - all_demons);
 							if (add_demons_to_work_queue(work, (Demon*[]){(Demon*)comp1, (Demon*)comp2}, 2)) any_completed = true;
 						}
@@ -1135,8 +1175,8 @@ static THREAD_RETURN_TYPE worker_thread(void* arg) {
 				} else { // regular fusion (level or elemental)
 					WORKER_LOG("Processing regular fusion for demon ID: %d\n", work->demon_id);
 					for (char race1 = 0; race1 < MAX_RACES; race1++) for (char race2 = race1 + 1; race2 < MAX_RACES; race2++) if (race_fusions[race1][race2] == all_demons[work->demon_id].race) {
-						RaceArray* race1_array = &demons_by_race[race1];
-						RaceArray* race2_array = &demons_by_race[race2];
+						DemonArray* race1_array = &demons_by_race[race1];
+						DemonArray* race2_array = &demons_by_race[race2];
 						for (int demon1 = 0; demon1 < race1_array->count && race1_array->demons[demon1]->level < all_demons[work->demon_id].fusions[f].max_level; demon1++) {
 							const Demon* comp1 = race1_array->demons[demon1];
 							if (comp1->level < all_demons[work->demon_id].fusions[f].min_level - 99 || !CHECK_DEMON_AVAILABILITY(work, comp1)) continue;
